@@ -1,6 +1,0 @@
-2021-11-23 14:09:37 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "THINGIES" not found; SQL statement:
-SELECT "THINGIES"."ID" AS "ID", "THINGIES"."TEXT" AS "TEXT" FROM "THINGIES" LIMIT 20 OFFSET 0 [42102-200]
-2021-11-23 14:26:13 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "THINGIES" not found; SQL statement:
-SELECT "THINGIES"."ID" AS "ID", "THINGIES"."TEXT" AS "TEXT" FROM "THINGIES" LIMIT 20 OFFSET 0 [42102-200]
