@@ -5,6 +5,6 @@ import org.springframework.data.relational.core.mapping.Table
 
 @Table("THINGIES")
 data class Thingy(
-    @Id val id: String?,
+    @Id val id: Long?,
     val text: String,
 )

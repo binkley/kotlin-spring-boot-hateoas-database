@@ -1,4 +1,8 @@
-CREATE TABLE thingies (
-    id VARCHAR(60) DEFAULT RANDOM_UUID() PRIMARY KEY,
+CREATE TABLE thingies
+(
+    id IDENTITY PRIMARY KEY,
     text VARCHAR(255) NOT NULL
-    );
+);
+
+INSERT INTO thingies(text)
+VALUES ('Frodo lives!')
