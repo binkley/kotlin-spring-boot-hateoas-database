@@ -1,9 +1,23 @@
 management:
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
   endpoints:
     web:
       base-path: /admin
       exposure:
         include: "*"
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
 
 spring:
   data:
