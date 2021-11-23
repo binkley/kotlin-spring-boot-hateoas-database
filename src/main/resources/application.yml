@@ -1,7 +1,7 @@
 management:
   endpoints:
     web:
-      base-path: /manage
+      base-path: /admin
       exposure:
         include: "*"
 
@@ -14,6 +14,9 @@ spring:
     url: jdbc:h2:mem:demo;DB_CLOSE_DELAY=-1
     username: sa
     password: password
+  h2:
+    console:
+      path: /h2
   sql:
     init:
       schema-locations: classpath:sql/schema.sql
