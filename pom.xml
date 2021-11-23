@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>hm.binkley.labs</groupId>
-    <artifactId>hateoas</artifactId>
+    <artifactId>kotlin-spring-boot-hateoas-database</artifactId>
     <version>0-SNAPSHOT</version>
-    <name>hateoas</name>
+    <name>Kotlin Spring Boot HATEOAS Database Example</name>
     <description>Kick the tires on Spring Boot HATEOAS</description>
     <properties>
         <java.version>11</java.version>

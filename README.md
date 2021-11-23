@@ -2,7 +2,7 @@
 <img src="https://unlicense.org/pd-icon.png" alt="Public Domain" align="right"/>
 </a>
 
-# HATEOAS
+# Kotlin Spring Boot HATEOAS Database
 
 [![build](https://github.com/binkley/hateoas/workflows/build/badge.svg)](https://github.com/binkley/hateoas/actions)
 [![issues](https://img.shields.io/github/issues/binkley/hateoas.svg)](https://github.com/binkley/hateoas/issues/)
