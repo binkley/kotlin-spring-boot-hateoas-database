@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class HateoasApplication
 
 fun main(args: Array<String>) {
-	runApplication<HateoasApplication>(*args)
+    runApplication<HateoasApplication>(*args)
 }
