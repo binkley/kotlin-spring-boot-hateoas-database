@@ -1,0 +1,4 @@
+CREATE TABLE thingies (
+    id VARCHAR(60) DEFAULT RANDOM_UUID() PRIMARY KEY,
+    text VARCHAR(255) NOT NULL
+    );
