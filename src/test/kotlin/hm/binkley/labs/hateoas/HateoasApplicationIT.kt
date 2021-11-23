@@ -1,8 +1,11 @@
 package hm.binkley.labs.hateoas
 
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
+import org.springframework.boot.test.json.JacksonTester
 import org.springframework.boot.web.server.LocalServerPort
 import java.net.URI
 import java.net.http.HttpClient
@@ -10,15 +13,27 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers.ofString
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@AutoConfigureJsonTesters
 class HateoasApplicationIT {
     @LocalServerPort
-    var port: Int = 0
+    private var port: Int = 0
+
+    @Autowired
+    private lateinit var thingyJson: JacksonTester<Thingy>
 
     val client = HttpClient.newHttpClient()
 
     @Test
     fun `should have a thingy`() {
-        get("/data/thingies/1").body()
+        // TODO: Why doesn't test populate the `id` field?
+        val expected = Thingy("Frodo lives!", true)
+
+        val json = get("/data/thingies/1").body()
+        val actual = thingyJson.parseObject(json)
+
+        assert(expected == actual) {
+            "Wrong thingy: expected: $expected; got $actual"
+        }
     }
 
     @Test

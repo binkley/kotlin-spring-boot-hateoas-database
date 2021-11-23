@@ -66,6 +66,7 @@ shutdown the demonstration.
     - Try `localhost:8080/h2`
 * Maximal actuator configuration
     - Try `localhost:8080/admin`
+* Auto-refresh of server on code changes
 
 ## Unfeatures
 
