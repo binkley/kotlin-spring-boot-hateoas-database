@@ -11,7 +11,7 @@
     </parent>
     <groupId>hm.binkley.labs</groupId>
     <artifactId>hateoas</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0-SNAPSHOT</version>
     <name>hateoas</name>
     <description>Kick the tires on Spring Boot HATEOAS</description>
     <properties>
