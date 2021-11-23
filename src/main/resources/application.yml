@@ -1,4 +1,14 @@
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: "*"
+
 spring:
+  data:
+    rest:
+      basePath: /data
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:demo;DB_CLOSE_DELAY=-1

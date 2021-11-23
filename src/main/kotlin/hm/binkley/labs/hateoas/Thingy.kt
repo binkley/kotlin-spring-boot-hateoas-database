@@ -7,4 +7,5 @@ import org.springframework.data.relational.core.mapping.Table
 data class Thingy(
     @Id val id: Long?,
     val text: String,
+    val moby: Boolean,
 )
