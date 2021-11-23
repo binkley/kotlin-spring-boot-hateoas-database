@@ -4,12 +4,12 @@
 
 # Kotlin Spring Boot HATEOAS Database
 
-[![build](https://github.com/binkley/hateoas/workflows/build/badge.svg)](https://github.com/binkley/hateoas/actions)
-[![issues](https://img.shields.io/github/issues/binkley/hateoas.svg)](https://github.com/binkley/hateoas/issues/)
-[![vulnerabilities](https://snyk.io/test/github/binkley/hateoas/badge.svg)](https://snyk.io/test/github/binkley/hateoas)
+[![build](https://github.com/binkley/kotlin-spring-boot-hateoas-database/workflows/build/badge.svg)](https://github.com/binkley/kotlin-spring-boot-hateoas-database/actions)
+[![issues](https://img.shields.io/github/issues/binkley/kotlin-spring-boot-hateoas-database.svg)](https://github.com/binkley/kotlin-spring-boot-hateoas-database/issues/)
+[![vulnerabilities](https://snyk.io/test/github/binkley/kotlin-spring-boot-hateoas-database/badge.svg)](https://snyk.io/test/github/binkley/kotlin-spring-boot-hateoas-database)
 [![license](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
 
-Kick the tires on Spring Boot HATEOAS
+Kick the tires on Spring Boot HATEOAS with a database
 
 ## Caveat emptor
 
