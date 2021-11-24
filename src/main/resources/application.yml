@@ -31,6 +31,8 @@ spring:
   h2:
     console:
       path: /h2
+  main:
+    banner-mode: off
   sql:
     init:
       schema-locations: classpath:sql/schema.sql
