@@ -14,15 +14,10 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureJsonTesters
-class HateoasApplicationIT {
-    @LocalServerPort
-    private var port: Int = 0
-
-    @Autowired
-    private lateinit var thingyJson: JacksonTester<Thingy>
-
-    val client = HttpClient.newHttpClient()
-
+class HateoasApplicationIT(
+    @LocalServerPort private val port: Int,
+    @Autowired val thingyJson: JacksonTester<Thingy>,
+) {
     @Test
     fun `should have a thingy`() {
         // TODO: Why doesn't test populate the `id` field?
@@ -41,7 +36,7 @@ class HateoasApplicationIT {
         get("/admin/info").body()
     }
 
-    private fun get(path: String) = client.send(
+    private fun get(path: String) = HttpClient.newHttpClient().send(
         HttpRequest.newBuilder()
             .GET()
             .uri(URI.create("http://localhost:$port$path"))
