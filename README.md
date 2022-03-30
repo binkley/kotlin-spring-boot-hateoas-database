@@ -60,13 +60,15 @@ shutdown the demonstration.
 ## Features
 
 * HATEOAS REST endpoint for database (the point of this scratch project)
-    - Try `localhost:8080/data`
+    - Try http://localhost:8080/data
 * H2 in memory database with dummy data preloaded
 * H2 console enabled
-    - Try `localhost:8080/h2`
+    - Try http://localhost:8080/h2
 * Maximal actuator configuration
-    - Try `localhost:8080/admin`
+    - Try http://localhost:8080/admin
 * Auto-refresh of server on code changes
+* Open API UI
+    - Try http://localhost:8080/swagger-ui.html
 
 ## Unfeatures
 
