@@ -65,46 +65,21 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- TODO: Embed admin console server, connect client
+        <!-- TODO: Breaks Spring Boot 2.6
         <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-server</artifactId>
-            <version>2.6.3</version>
-        </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>2.6.3</version>
-        </dependency>
-        -->
-
-        <!-- TODO: Swagger UI
-        <dependency>
-            <groupId>io.springfox</groupId>
+            <groupId>org.thingsboard</groupId>
             <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        // TODO: More Springfox
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-bean-validators</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        // TODO: More Springfox
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-data-rest</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.4</version>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
+            <groupId>org.thingsboard</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.4</version>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
+            <groupId>org.thingsboard</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.4</version>
         </dependency>
         -->
 
