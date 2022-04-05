@@ -36,6 +36,17 @@ class HateoasApplicationIT(
         get("/admin/info").body()
     }
 
+    @Test
+    fun `should have HAL explorer`() {
+        get("/data").body().contains("HAL explorer")
+    }
+
+    @Test
+    fun `should have endpoint UI`() {
+        // Check for random text for an actuator endpoint
+        get("/").body().contains("Actuator web endpoint 'loggers-name'")
+    }
+
     private fun get(path: String) = HttpClient.newHttpClient().send(
         HttpRequest.newBuilder()
             .GET()
