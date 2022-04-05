@@ -22,6 +22,11 @@ class HateoasApplicationIT(
     @Autowired val thingyJson: JacksonTester<Thingy>,
 ) {
     @Test
+    fun `should have a HAL explorer`() {
+        get("/data").body() shouldContain "thingies"
+    }
+
+    @Test
     fun `should have a thingy`() {
         // TODO: Why doesn't test populate the `id` field?
         val expected = Thingy("Frodo lives!", true)
@@ -36,11 +41,6 @@ class HateoasApplicationIT(
     fun `should have an info endpoint`() {
         get("/admin/info").body() shouldContain
             "kotlin-spring-boot-hateoas-database"
-    }
-
-    @Test
-    fun `should have a HAL explorer`() {
-        get("/data").body() shouldContain "thingies"
     }
 
     @Test
