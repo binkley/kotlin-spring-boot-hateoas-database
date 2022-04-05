@@ -1,6 +1,9 @@
 package hm.binkley.labs.hateoas
 
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.fail
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters
 import org.springframework.boot.test.context.SpringBootTest
@@ -9,6 +12,8 @@ import org.springframework.boot.test.json.JacksonTester
 import org.springframework.boot.web.server.LocalServerPort
 import java.net.URI
 import java.net.http.HttpClient
+import java.net.http.HttpClient.Redirect.ALWAYS
+import java.net.http.HttpClient.newHttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers.ofString
 
@@ -26,28 +31,29 @@ class HateoasApplicationIT(
         val json = get("/data/thingies/1").body()
         val actual = thingyJson.parseObject(json)
 
-        assert(expected == actual) {
-            "Wrong thingy: expected: $expected; got $actual"
-        }
+        actual shouldBe expected
     }
 
     @Test
-    fun `should have info endpoint`() {
-        get("/admin/info").body()
+    fun `should have an info endpoint`() {
+        get("/admin/info").body() shouldContain
+                "kotlin-spring-boot-hateoas-database"
     }
 
     @Test
-    fun `should have HAL explorer`() {
-        get("/data").body().contains("HAL explorer")
+    fun `should have a HAL explorer`() {
+        get("/data").body() shouldContain "thingies"
     }
 
     @Test
-    fun `should have endpoint UI`() {
-        // Check for random text for an actuator endpoint
-        get("/").body().contains("Actuator web endpoint 'loggers-name'")
+    fun `should have an endpoint UI`() {
+        get("/").body() shouldContain "Swagger UI"
     }
 
-    private fun get(path: String) = HttpClient.newHttpClient().send(
+    private fun get(path: String) = HttpClient.newBuilder()
+        .followRedirects(ALWAYS)
+        .build()
+        .send(
         HttpRequest.newBuilder()
             .GET()
             .uri(URI.create("http://localhost:$port$path"))
