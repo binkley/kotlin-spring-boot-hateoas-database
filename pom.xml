@@ -24,6 +24,7 @@
         <java.version>17</java.version>
         <kotest.version>5.2.2</kotest.version>
         <kotlin.version>1.6.20</kotlin.version>
+        <ktlint-maven-plugin.version>1.13.0</ktlint-maven-plugin.version>
         <springdoc.version>1.6.6</springdoc.version>
     </properties>
 
@@ -111,6 +112,22 @@
         </testSourceDirectory>
 
         <plugins>
+            <plugin>
+                <groupId>com.github.gantsign.maven</groupId>
+                <artifactId>ktlint-maven-plugin</artifactId>
+                <version>${ktlint-maven-plugin.version}</version>
+                <configuration>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

@@ -3,7 +3,6 @@ package hm.binkley.labs.hateoas
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.fail
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters
 import org.springframework.boot.test.context.SpringBootTest
@@ -13,7 +12,6 @@ import org.springframework.boot.web.server.LocalServerPort
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpClient.Redirect.ALWAYS
-import java.net.http.HttpClient.newHttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers.ofString
 
@@ -37,7 +35,7 @@ class HateoasApplicationIT(
     @Test
     fun `should have an info endpoint`() {
         get("/admin/info").body() shouldContain
-                "kotlin-spring-boot-hateoas-database"
+            "kotlin-spring-boot-hateoas-database"
     }
 
     @Test
@@ -54,10 +52,10 @@ class HateoasApplicationIT(
         .followRedirects(ALWAYS)
         .build()
         .send(
-        HttpRequest.newBuilder()
-            .GET()
-            .uri(URI.create("http://localhost:$port$path"))
-            .build(),
-        ofString()
-    )
+            HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:$port$path"))
+                .build(),
+            ofString()
+        )
 }
