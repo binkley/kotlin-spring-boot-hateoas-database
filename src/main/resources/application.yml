@@ -37,3 +37,10 @@ spring:
     init:
       schema-locations: classpath:sql/schema.sql
       mode: always
+
+springdoc:
+  show-actuator: true
+  model-and-view-allowed: true
+  writer-with-default-pretty-printer: true
+  swagger-ui:
+    path: /

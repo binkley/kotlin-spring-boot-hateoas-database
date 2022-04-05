@@ -9,13 +9,15 @@
 [![vulnerabilities](https://snyk.io/test/github/binkley/kotlin-spring-boot-hateoas-database/badge.svg)](https://snyk.io/test/github/binkley/kotlin-spring-boot-hateoas-database)
 [![license](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
 
-Kick the tires on Spring Boot HATEOAS with a database.  (Do not fret, this
-project uses an in-memory database that vanishes when you stop the program.)
+Kick the tires on Spring Boot HATEOAS with a database.
+(Do not fret, this project uses an in-memory database that vanishes when 
+you stop the program.)
 
 ## Caveat emptor
 
-This is a scratch, experimental repository. It might force push. It might
-vanish without warning.
+This is a scratch, experimental repository.
+It might force push.
+It might vanish without warning.
 
 ## How to use
 
@@ -32,9 +34,9 @@ $ ./mvnw spring-boot:run
 ```
 
 Once the program is ready (look for the "Started HateoasApplicationKt"
-message), in another terminal (if you don't
-use [httpie](https://httpie.io/cli), try `curl` though it will not be as nice
-to look at):
+message), in another terminal (if you don't use
+[curlie](https://curlie.io/) or [httpie](https://httpie.io/cli), try `curl` or
+`telnet` though it will not be as nice to look at):
 
 ```
 $ http localhost:8080/data
@@ -49,10 +51,12 @@ $ http localhost:8080/admin/health
 # Output: everything should be in the UP state
 ```
 
-Before interrupting the first terminal process, in a browser try
-[the data link](http://localhost:8080/data) again. Play around with the web
-page features. You cannot break anything (the database is in-memory). Sadly,
-there is no nice page for [the admin links](http://localhost:8080/admin).
+Before interrupting the first terminal process, try [the data
+link](http://localhost:8080/data) again.
+Play around with the web page features.
+You cannot break anything (the database is in-memory).
+Sadly, there is no nice page for [the admin
+links](http://localhost:8080/admin).
 
 Before you change to another task, please interrupt the first terminal, and
 shutdown the demonstration.
@@ -61,15 +65,14 @@ shutdown the demonstration.
 
 * HATEOAS REST endpoint for database (the point of this scratch project)
     - Try http://localhost:8080/data
-* H2 in memory database with dummy data preloaded
+* H2 in-memory database with dummy data preloaded ("Frodo lives!")
 * H2 console enabled
     - Try http://localhost:8080/h2
 * Maximal actuator configuration
     - Try http://localhost:8080/admin
 * Auto-refresh of server on code changes
 * Open API UI
-    - Try http://localhost:8080/swagger-ui.html
-
-## Unfeatures
-
-* Swagger3 breaks Spring Boot 2.6 ☹
+    - Try http://localhost:8080/ (which redirects
+      to http://localhost:8080/swagger-ui/index.html)
+* Prometheus metrics
+    - Try http://localhost:8080/admin/prometheus
