@@ -19,7 +19,8 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 @AutoConfigureJsonTesters
 class HateoasApplicationIT(
     @LocalServerPort private val port: Int,
-    @Autowired val thingyJson: JacksonTester<Thingy>,
+    @Autowired private val thingyJson: JacksonTester<Thingy>,
+    @Autowired private val thingiesJson: JacksonTester<List<Thingy>>,
 ) {
     @Test
     fun `should have a HAL explorer`() {
@@ -27,9 +28,9 @@ class HateoasApplicationIT(
     }
 
     @Test
-    fun `should have a thingy`() {
+    fun `should have a thingy through data HATEOAS`() {
         // TODO: Why doesn't test populate the `id` field?
-        val expected = Thingy("Frodo lives!", true)
+        val expected = Thingy("Frodo lives!", true, id = null)
 
         val json = get("/data/thingies/1").body()
         val actual = thingyJson.parseObject(json)
@@ -38,9 +39,18 @@ class HateoasApplicationIT(
     }
 
     @Test
+    fun `should have a thingy through REST endpoint`() {
+        val expected = listOf(Thingy("Frodo lives!", true, 1L))
+
+        val json = get("/rest/thingies").body()
+        val actual = thingiesJson.parseObject(json)
+
+        actual shouldBe expected
+    }
+
+    @Test
     fun `should have an info endpoint`() {
-        get("/admin/info").body() shouldContain
-            "kotlin-spring-boot-hateoas-database"
+        get("/admin/info").body() shouldContain "java"
     }
 
     @Test
