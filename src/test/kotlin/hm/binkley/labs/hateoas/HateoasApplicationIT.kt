@@ -35,9 +35,9 @@ class HateoasApplicationIT(
     fun `should have a thingy through data HATEOAS`() {
         // TODO: HAL is throwing away the ID
         val expected = Thingy(
+            id = null,
             text = "Frodo lives!",
             moby = true,
-            id = null,
         )
 
         val json = get("/data/thingies/1")
@@ -49,9 +49,9 @@ class HateoasApplicationIT(
     @Test
     fun `should have a thingy through REST endpoint`() {
         val expected = Thingy(
+            id = 1L,
             text = "Frodo lives!",
             moby = true,
-            id = 1L,
         )
 
         val json = get("/rest/thingies/1")
