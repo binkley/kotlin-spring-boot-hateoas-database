@@ -20,19 +20,22 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 class HateoasApplicationIT(
     @LocalServerPort private val port: Int,
     @Autowired private val thingyJson: JacksonTester<Thingy>,
-    @Autowired private val thingiesJson: JacksonTester<List<Thingy>>,
 ) {
     @Test
     fun `should have a HAL explorer`() {
-        get("/data").body() shouldContain "thingies"
+        get("/data") shouldContain "thingies"
     }
 
     @Test
     fun `should have a thingy through data HATEOAS`() {
-        // TODO: Why doesn't test populate the `id` field?
-        val expected = Thingy("Frodo lives!", true, id = null)
+        // TODO: HAL is throwing away the ID
+        val expected = Thingy(
+            text = "Frodo lives!",
+            moby = true,
+            id = null,
+        )
 
-        val json = get("/data/thingies/1").body()
+        val json = get("/data/thingies/1")
         val actual = thingyJson.parseObject(json)
 
         actual shouldBe expected
@@ -40,22 +43,26 @@ class HateoasApplicationIT(
 
     @Test
     fun `should have a thingy through REST endpoint`() {
-        val expected = listOf(Thingy("Frodo lives!", true, 1L))
+        val expected = Thingy(
+            text = "Frodo lives!",
+            moby = true,
+            id = 1L,
+        )
 
-        val json = get("/rest/thingies").body()
-        val actual = thingiesJson.parseObject(json)
+        val json = get("/rest/thingies/1")
+        val actual = thingyJson.parseObject(json)
 
         actual shouldBe expected
     }
 
     @Test
     fun `should have an info endpoint`() {
-        get("/admin/info").body() shouldContain "java"
+        get("/admin/info") shouldContain "java"
     }
 
     @Test
     fun `should have an endpoint UI`() {
-        get("/").body() shouldContain "Swagger UI"
+        get("/") shouldContain "Swagger UI"
     }
 
     private fun get(path: String) = HttpClient.newBuilder()
@@ -68,4 +75,5 @@ class HateoasApplicationIT(
                 .build(),
             ofString()
         )
+        .body()
 }
