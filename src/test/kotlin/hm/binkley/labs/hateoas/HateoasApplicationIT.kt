@@ -22,6 +22,11 @@ class HateoasApplicationIT(
     @Autowired private val thingyJson: JacksonTester<Thingy>,
 ) {
     @Test
+    fun `should have an endpoint UI`() {
+        get("/rest") shouldContain "Swagger UI"
+    }
+
+    @Test
     fun `should have a HAL explorer`() {
         get("/data") shouldContain "thingies"
     }
@@ -58,11 +63,6 @@ class HateoasApplicationIT(
     @Test
     fun `should have an info endpoint`() {
         get("/admin/info") shouldContain "java"
-    }
-
-    @Test
-    fun `should have an endpoint UI`() {
-        get("/") shouldContain "Swagger UI"
     }
 
     private fun get(path: String) = HttpClient.newBuilder()

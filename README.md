@@ -45,6 +45,10 @@ $ http localhost:8080/data/thingies
 # Output: description of the THINGIES database table
 $ http localhost:8080/data/thingies/1
 # Output: first record in THINGIES (Frodo is moby, is he not?)
+$ http localhost:8080/rest/thingies/1
+# Output: the first thingy in the database
+$ http localhost:8080/rest
+# Output: all available endpoints
 $ http localhost:8080/admin
 # Output: list of admin endpoints
 $ http localhost:8080/admin/health
@@ -63,16 +67,18 @@ shutdown the demonstration.
 
 ## Features
 
+* Open API UI
+  - Try http://localhost:8080/rest (which redirects
+    to http://localhost:8080/swagger-ui/index.html)
 * HATEOAS REST endpoint for database (the point of this scratch project)
     - Try http://localhost:8080/data
 * H2 in-memory database with dummy data preloaded ("Frodo lives!")
+    - Try http://localhost:8080/rest/thingies/1
+    - Try http://localhost:8080/data/thingies/1
 * H2 console enabled
     - Try http://localhost:8080/h2
 * Maximal actuator configuration
     - Try http://localhost:8080/admin
-* Auto-refresh of server on code changes
-* Open API UI
-    - Try http://localhost:8080/ (which redirects
-      to http://localhost:8080/swagger-ui/index.html)
 * Prometheus metrics
     - Try http://localhost:8080/admin/prometheus
+* Auto-refresh of server on code changes

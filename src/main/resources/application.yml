@@ -43,4 +43,4 @@ springdoc:
   model-and-view-allowed: true
   writer-with-default-pretty-printer: true
   swagger-ui:
-    path: /
+    path: /rest
