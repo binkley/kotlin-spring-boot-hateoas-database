@@ -19,6 +19,13 @@ management:
     java:
       enabled: true
 
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_param
+    include-exception: false
+
 spring:
   data:
     rest:
