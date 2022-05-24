@@ -26,7 +26,7 @@
         <kotlin.version>1.6.21</kotlin.version>
         <ktlint-maven-plugin.version>1.13.1</ktlint-maven-plugin.version>
         <springdoc.version>1.6.8</springdoc.version>
-        <versions-maven-plugin.version>2.10.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
     </properties>
 
     <dependencies>
