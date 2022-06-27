@@ -22,7 +22,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <kotest.version>5.3.1</kotest.version>
+        <kotest.version>5.3.2</kotest.version>
         <kotlin.version>1.7.0</kotlin.version>
         <ktlint-maven-plugin.version>1.13.1</ktlint-maven-plugin.version>
         <springdoc.version>1.6.9</springdoc.version>
