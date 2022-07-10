@@ -24,10 +24,24 @@
         <java.version>17</java.version>
         <kotest.version>5.3.2</kotest.version>
         <kotlin.version>1.7.10</kotlin.version>
+        <kotlinx-coroutines.version>1.6.3</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>1.13.1</ktlint-maven-plugin.version>
         <springdoc.version>1.6.9</springdoc.version>
         <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
     </properties>
+
+    <!-- TODO: Kotest mistakenly thinks the BOM is a jar -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-bom</artifactId>
+                <version>${kotlinx-coroutines.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -99,6 +113,13 @@
             <artifactId>kotest-runner-junit5-jvm</artifactId>
             <version>${kotest.version}</version>
             <scope>test</scope>
+            <!-- TODO: Kotest mistakenly thinks the BOM is a jar -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlinx</groupId>
+                    <artifactId>kotlinx-coroutines-bom</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.kotest</groupId>
