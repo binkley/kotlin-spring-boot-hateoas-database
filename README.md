@@ -10,8 +10,8 @@
 [![license](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
 
 Kick the tires on Spring Boot HATEOAS with a database.
-(Do not fret, this project uses an in-memory database that vanishes when 
-you stop the program.)
+(Do not fret, this project uses an in-memory database that vanishes when you
+stop the program.)
 
 ## Caveat emptor
 
@@ -68,8 +68,8 @@ shutdown the demonstration.
 ## Features
 
 * Open API UI
-  - Try http://localhost:8080/rest (which redirects
-    to http://localhost:8080/swagger-ui/index.html)
+    - Try http://localhost:8080/rest (which redirects to
+      http://localhost:8080/swagger-ui/index.html)
 * HATEOAS REST endpoint for database (the point of this scratch project)
     - Try http://localhost:8080/data
 * H2 in-memory database with dummy data preloaded ("Frodo lives!")
