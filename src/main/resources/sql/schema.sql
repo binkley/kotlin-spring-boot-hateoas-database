@@ -1,6 +1,6 @@
 CREATE TABLE thingies
 (
     id IDENTITY PRIMARY KEY,
-    text VARCHAR(255) NOT NULL,
+    text VARCHAR NOT NULL,
     moby BOOLEAN NOT NULL
 );
