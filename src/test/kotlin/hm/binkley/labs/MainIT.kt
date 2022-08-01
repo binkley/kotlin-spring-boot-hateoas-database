@@ -1,5 +1,6 @@
-package hm.binkley.labs.hateoas
+package hm.binkley.labs
 
+import hm.binkley.labs.hateoas.Thingy
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
@@ -17,7 +18,7 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureJsonTesters
-class HateoasApplicationIT(
+class MainIT(
     @LocalServerPort private val port: Int,
     @Autowired private val thingyJson: JacksonTester<Thingy>,
 ) {

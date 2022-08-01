@@ -1,11 +1,11 @@
-package hm.binkley.labs.hateoas
+package hm.binkley.labs
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class HateoasApplication
+class Main
 
 fun main(args: Array<String>) {
-    runApplication<HateoasApplication>(*args)
+    runApplication<Main>(*args)
 }
