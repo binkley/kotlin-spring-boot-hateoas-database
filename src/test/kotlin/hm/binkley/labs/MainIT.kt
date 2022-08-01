@@ -33,6 +33,12 @@ class MainIT(
     }
 
     @Test
+    fun `should have a GraphiQL explorer`() {
+        // TODO: Sad, but true: GraphiQL is pure JavaScript
+        get("/graphiql") shouldContain "document.getElementById('graphiql')"
+    }
+
+    @Test
     fun `should have a thingy through data HATEOAS`() {
         // TODO: HAL is throwing away the ID
         val expected = Thingy(
