@@ -2,9 +2,10 @@ package hm.binkley.labs.graphql
 
 data class Book(
     val id: String,
+    val authorId: String,
     val name: String,
     val pageCount: Int,
-    val authorId: String,
+    val moby: Boolean,
 ) {
     companion object {
         fun byId(id: String) = books.firstOrNull { it.id == id }
@@ -13,11 +14,24 @@ data class Book(
 
 private val books = listOf(
     Book(
-        "book-1",
-        "Harry Potter and the Philosopher's Stone",
-        223,
-        "author-1"
+        id = "book-1",
+        authorId = "author-1",
+        name = "Harry Potter and the Philosopher's Stone",
+        pageCount = 223,
+        moby = true,
     ),
-    Book("book-2", "Moby Dick", 635, "author-2"),
-    Book("book-3", "Interview with the vampire", 371, "author-3"),
+    Book(
+        id = "book-2",
+        authorId = "author-2",
+        name = "Moby Dick",
+        pageCount = 635,
+        moby = false
+    ),
+    Book(
+        id = "book-3",
+        authorId = "author-3",
+        name = "Interview with the vampire",
+        pageCount = 371,
+        moby = false,
+    ),
 )
