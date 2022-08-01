@@ -1,7 +1,11 @@
 package hm.binkley.labs.graphql
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
+
+@Table("books")
 data class Book(
-    val id: String,
+    @Id val id: String? = null,
     val authorId: String,
     val title: String,
     val pageCount: Int,

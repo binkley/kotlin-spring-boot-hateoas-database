@@ -1,7 +1,11 @@
 package hm.binkley.labs.graphql
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
+
+@Table("authors")
 data class Author(
-    val id: String,
+    @Id val id: String? = null,
     val firstName: String,
     val lastName: String,
 ) {
