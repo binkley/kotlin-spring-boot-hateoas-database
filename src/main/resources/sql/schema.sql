@@ -8,15 +8,15 @@ CREATE TABLE thingies
 CREATE TABLE authors
 (
     id VARCHAR PRIMARY KEY,
-    firstName VARCHAR NOT NULL,
-    lastName VARCHAR NOT NULL
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL
 );
 
 CREATE TABLE books
 (
     id VARCHAR PRIMARY KEY,
-    authorId VARCHAR REFERENCES authors(id),
+    author_id VARCHAR REFERENCES authors(id),
     title VARCHAR NOT NULL,
-    pageCount INTEGER NOT NULL,
+    page_count INTEGER NOT NULL,
     moby BOOLEAN NOT NULL
 );

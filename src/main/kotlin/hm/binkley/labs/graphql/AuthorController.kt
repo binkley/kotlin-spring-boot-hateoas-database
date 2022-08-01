@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RequestMapping("/rest/books")
+@RequestMapping("/rest/authors")
 @RestController
-class BookController(
-    private val books: BookRepository,
+class AuthorController(
+    private val authors: AuthorRepository,
 ) {
     @GetMapping("")
-    fun all() = books.findAll()
+    fun all() = authors.findAll()
 
     @GetMapping("{id}")
-    fun byId(@PathVariable id: String) = books.findById(id)
+    fun byId(@PathVariable id: String) = authors.findById(id)
         .orElseThrow { ResourceNotFoundException() }
 }

@@ -3,7 +3,7 @@ package hm.binkley.labs.graphql
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 
-@Table("books")
+@Table("BOOKS")
 data class Book(
     @Id val id: String? = null,
     val authorId: String,
