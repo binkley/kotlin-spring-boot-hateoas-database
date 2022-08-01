@@ -46,6 +46,7 @@ spring:
     banner-mode: off
   sql:
     init:
+      data-locations: classpath:sql/data.sql
       schema-locations: classpath:sql/schema.sql
       mode: always
 
