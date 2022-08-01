@@ -35,6 +35,10 @@ spring:
     url: jdbc:h2:mem:demo;DB_CLOSE_DELAY=-1
     username: sa
     password: password
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
   h2:
     console:
       path: /h2

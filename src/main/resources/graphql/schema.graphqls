@@ -1,0 +1,32 @@
+"""
+TODO: Support Dewey Decimal and others.
+"""
+type Query {
+    # A comment that should be ignored by documentation tools
+    bookById(id: ID!): Book
+}
+
+"""
+Read more books.
+"""
+type Book {
+    id: ID!
+    name: String
+    pageCount: Int
+    """
+    TODO: Should be a plural, not a singular.
+    """
+    author: Author
+}
+
+"""
+Books do not write themselves, you know.
+"""
+type Author {
+    id: ID!
+    """
+    TODO: A first/last name pair assumes cultural conventions.
+    """
+    firstName: String
+    lastName: String
+}
