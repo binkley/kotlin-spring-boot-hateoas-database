@@ -3,7 +3,7 @@ TODO: Support Dewey Decimal and others.
 """
 type Query {
     # A comment that should be ignored by documentation tools
-    bookById(id: ID!): Book
+    bookByISBN(isbn: ID!): Book
 }
 
 """

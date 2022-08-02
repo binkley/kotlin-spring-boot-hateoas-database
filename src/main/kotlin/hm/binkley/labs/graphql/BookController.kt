@@ -14,7 +14,7 @@ class BookController(
     @GetMapping("")
     fun all(): Iterable<Book> = books.findAll()
 
-    @GetMapping("{id}")
-    fun byId(@PathVariable id: String) = books.findById(id)
+    @GetMapping("{isbn}")
+    fun byISBN(@PathVariable isbn: String): Book = books.findById(isbn)
         .orElseThrow { ResourceNotFoundException() }
 }
