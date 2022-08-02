@@ -1,6 +1,6 @@
 package hm.binkley.labs
 
-import hm.binkley.labs.hateoas.Thingy
+import hm.binkley.labs.graphql.Author
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
@@ -20,7 +20,7 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 @AutoConfigureJsonTesters
 class MainIT(
     @LocalServerPort private val port: Int,
-    @Autowired private val thingyJson: JacksonTester<Thingy>,
+    @Autowired private val authorJson: JacksonTester<Author>,
 ) {
     @Test
     fun `should have an endpoint UI`() {
@@ -29,7 +29,8 @@ class MainIT(
 
     @Test
     fun `should have a HAL explorer`() {
-        get("/data") shouldContain "thingies"
+        get("/data") shouldContain "authors"
+        get("/data") shouldContain "books"
     }
 
     @Test
@@ -39,30 +40,30 @@ class MainIT(
     }
 
     @Test
-    fun `should have a thingy through data HATEOAS`() {
+    fun `should have an author through data HATEOAS`() {
         // TODO: HAL is throwing away the ID
-        val expected = Thingy(
+        val expected = Author(
             id = null,
-            text = "Frodo lives!",
-            moby = true,
+            firstName = "Joanne",
+            lastName = "Rowling",
         )
 
-        val json = get("/data/thingies/1")
-        val actual = thingyJson.parseObject(json)
+        val json = get("/data/authors/author-1")
+        val actual = authorJson.parseObject(json)
 
         actual shouldBe expected
     }
 
     @Test
-    fun `should have a thingy through REST endpoint`() {
-        val expected = Thingy(
-            id = 1L,
-            text = "Frodo lives!",
-            moby = true,
+    fun `should have an author through REST endpoint`() {
+        val expected = Author(
+            id = "author-1",
+            firstName = "Joanne",
+            lastName = "Rowling",
         )
 
-        val json = get("/rest/thingies/1")
-        val actual = thingyJson.parseObject(json)
+        val json = get("/rest/authors/author-1")
+        val actual = authorJson.parseObject(json)
 
         actual shouldBe expected
     }

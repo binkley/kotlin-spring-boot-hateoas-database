@@ -1,10 +1,3 @@
-CREATE TABLE thingies
-(
-    id IDENTITY PRIMARY KEY,
-    text VARCHAR NOT NULL,
-    moby BOOLEAN NOT NULL
-);
-
 CREATE TABLE authors
 (
     id VARCHAR PRIMARY KEY,

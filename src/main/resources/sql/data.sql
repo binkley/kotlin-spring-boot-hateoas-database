@@ -1,7 +1,3 @@
--- Thingies
-INSERT INTO thingies(text, moby)
-VALUES ('Frodo lives!', TRUE);
-
 -- Authors
 INSERT INTO authors(id, first_name, last_name)
 VALUES ('author-1', 'Joanne', 'Rowling');
