@@ -15,7 +15,7 @@ type Book {
     TODO: Should be a plural, not a singular.
     """
     author: Author
-    name: String
+    title: String
     pageCount: Int
     moby: Boolean
 }
