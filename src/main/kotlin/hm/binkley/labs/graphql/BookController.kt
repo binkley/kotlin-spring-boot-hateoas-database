@@ -12,7 +12,7 @@ class BookController(
     private val books: BookRepository,
 ) {
     @GetMapping("")
-    fun all() = books.findAll()
+    fun all(): Iterable<Book> = books.findAll()
 
     @GetMapping("{id}")
     fun byId(@PathVariable id: String) = books.findById(id)

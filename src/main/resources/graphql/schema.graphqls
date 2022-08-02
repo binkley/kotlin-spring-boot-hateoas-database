@@ -11,13 +11,13 @@ Read more books.
 """
 type Book {
     id: ID!
-    name: String
-    pageCount: Int
-    moby: Boolean
     """
     TODO: Should be a plural, not a singular.
     """
     author: Author
+    name: String
+    pageCount: Int
+    moby: Boolean
 }
 
 """

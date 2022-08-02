@@ -6,10 +6,13 @@ import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.stereotype.Controller
 
 @Controller
-class GraphqlController {
+class GraphqlController(
+    private val authors: AuthorRepository,
+    private val books: BookRepository,
+) {
     @QueryMapping
-    fun bookById(@Argument id: String) = Book.byId(id)
+    fun bookById(@Argument id: String): Book? = books.findById(id).get()
 
     @SchemaMapping
-    fun author(book: Book) = Author.byId(book.authorId)
+    fun author(book: Book): Author = authors.findById(book.authorId).get()
 }
