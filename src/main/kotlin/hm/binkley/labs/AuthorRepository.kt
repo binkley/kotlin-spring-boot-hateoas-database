@@ -1,4 +1,4 @@
-package hm.binkley.labs.graphql
+package hm.binkley.labs
 
 import org.springframework.data.repository.PagingAndSortingRepository
 

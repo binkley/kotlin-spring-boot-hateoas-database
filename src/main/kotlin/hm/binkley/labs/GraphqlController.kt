@@ -1,4 +1,4 @@
-package hm.binkley.labs.graphql
+package hm.binkley.labs
 
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.QueryMapping

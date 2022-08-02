@@ -1,7 +1,5 @@
 package hm.binkley.labs
 
-import hm.binkley.labs.graphql.Author
-import hm.binkley.labs.graphql.Book
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
