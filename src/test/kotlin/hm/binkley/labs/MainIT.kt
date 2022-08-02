@@ -2,6 +2,7 @@ package hm.binkley.labs
 
 import hm.binkley.labs.graphql.Author
 import hm.binkley.labs.graphql.Book
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
@@ -22,7 +23,9 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 internal class MainIT(
     @LocalServerPort private val port: Int,
     @Autowired private val authorJson: JacksonTester<Author>,
+    @Autowired private val authorsJson: JacksonTester<List<Author>>,
     @Autowired private val bookJson: JacksonTester<Book>,
+    @Autowired private val booksJson: JacksonTester<List<Book>>,
 ) {
     @Test
     fun `should have an endpoint UI`() {
@@ -74,6 +77,14 @@ internal class MainIT(
     }
 
     @Test
+    fun `should have all authors through REST endpoint`() {
+        val json = get("/rest/authors")
+        val actual = authorsJson.parseObject(json)
+
+        actual shouldHaveSize 3
+    }
+
+    @Test
     fun `should have an author through REST endpoint`() {
         val expected = Author(
             id = "author-1",
@@ -85,6 +96,14 @@ internal class MainIT(
         val actual = authorJson.parseObject(json)
 
         actual shouldBe expected
+    }
+
+    @Test
+    fun `should have all books through REST endpoint`() {
+        val json = get("/rest/books")
+        val actual = booksJson.parseObject(json)
+
+        actual shouldHaveSize 3
     }
 
     @Test

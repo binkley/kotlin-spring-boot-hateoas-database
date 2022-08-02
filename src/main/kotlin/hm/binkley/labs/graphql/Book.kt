@@ -5,7 +5,7 @@ import org.springframework.data.relational.core.mapping.Table
 
 @Table("BOOKS")
 data class Book(
-    @Id val id: String? = "BAD BOOK",
+    @Id val id: String? = null,
     val authorId: String,
     val title: String,
     val pageCount: Int,
