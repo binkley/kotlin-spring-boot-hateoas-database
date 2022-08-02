@@ -1,6 +1,7 @@
 package hm.binkley.labs
 
 import hm.binkley.labs.graphql.Author
+import hm.binkley.labs.graphql.Book
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
@@ -21,6 +22,7 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 class MainIT(
     @LocalServerPort private val port: Int,
     @Autowired private val authorJson: JacksonTester<Author>,
+    @Autowired private val bookJson: JacksonTester<Book>,
 ) {
     @Test
     fun `should have an endpoint UI`() {
@@ -55,6 +57,23 @@ class MainIT(
     }
 
     @Test
+    fun `should have a book through data HATEOAS`() {
+        // TODO: HAL is throwing away the ID
+        val expected = Book(
+            id = null,
+            authorId = "author-1",
+            title = "Harry Potter and the Philosopher's Stone",
+            pageCount = 223,
+            moby = true,
+        )
+
+        val json = get("/data/books/book-1")
+        val actual = bookJson.parseObject(json)
+
+        actual shouldBe expected
+    }
+
+    @Test
     fun `should have an author through REST endpoint`() {
         val expected = Author(
             id = "author-1",
@@ -64,6 +83,22 @@ class MainIT(
 
         val json = get("/rest/authors/author-1")
         val actual = authorJson.parseObject(json)
+
+        actual shouldBe expected
+    }
+
+    @Test
+    fun `should have a book through REST endpoint`() {
+        val expected = Book(
+            id = "book-1",
+            authorId = "author-1",
+            title = "Harry Potter and the Philosopher's Stone",
+            pageCount = 223,
+            moby = true,
+        )
+
+        val json = get("/rest/books/book-1")
+        val actual = bookJson.parseObject(json)
 
         actual shouldBe expected
     }
