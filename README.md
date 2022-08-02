@@ -39,20 +39,34 @@ message), in another terminal (if you don't use
 `telnet` though it will not be as nice to look at):
 
 ```
-$ http localhost:8080/data
 # Output: list of data endpoints
-$ http localhost:8080/data/authors
+$ http localhost:8080/data
 # Output: description of the AUTHORS database table
-$ http localhost:8080/data/authors/author-1
+$ http localhost:8080/data/authors
 # Output: first record in AUTHORS (Joanne Rowling is moby, is she not?)
-$ http localhost:8080/rest/authors/author-1
+$ http localhost:8080/data/authors/author-1
 # Output: the first author in the database
-$ http localhost:8080/rest
+$ http localhost:8080/rest/authors/author-1
+# Output: the first author as GraphQL
+$ http :8080/graphql query='{
+  bookById(id: "book-1") {
+    id
+    title
+    pageCount
+    moby
+    author {
+      id
+      firstName
+      lastName
+    }
+  }
+}'
 # Output: all available endpoints
-$ http localhost:8080/admin
+$ http localhost:8080/rest
 # Output: list of admin endpoints
-$ http localhost:8080/admin/health
+$ http localhost:8080/admin
 # Output: everything should be in the UP state
+$ http localhost:8080/admin/health
 ```
 
 Before interrupting the first terminal process, try [the data
@@ -72,6 +86,8 @@ shutdown the demonstration.
       http://localhost:8080/swagger-ui/index.html)
 * HATEOAS REST endpoint for database (the point of this scratch project)
     - Try http://localhost:8080/data
+* GraphiQL UI and APIs
+    - Try http://localhost:8080/graphiql
 * H2 in-memory database with dummy data preloaded ("Joanne Rowling")
     - Try http://localhost:8080/rest/authors/1
     - Try http://localhost:8080/data/authors/1
