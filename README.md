@@ -81,18 +81,25 @@ shutdown the demonstration.
 
 ## Features
 
-* Open API UI
-    - Try http://localhost:8080/rest (which redirects to
-      http://localhost:8080/swagger-ui/index.html)
-* HATEOAS REST endpoint for database (the point of this scratch project)
+### Pretty, auto-configured/auto-generated UI explorers
+
+* Open API (Swagger) UI
+    - Try http://localhost:8080/rest
+* HATEOAS UI
     - Try http://localhost:8080/data
 * GraphiQL UI and APIs
     - Try http://localhost:8080/graphiql
+
+### In-memory persistence for demo
+
 * H2 in-memory database with dummy data preloaded ("Joanne Rowling")
     - Try http://localhost:8080/rest/authors/1
     - Try http://localhost:8080/data/authors/1
 * H2 console enabled
     - Try http://localhost:8080/h2
+
+### Generic Spring Boot stuff 
+
 * Maximal actuator configuration
     - Try http://localhost:8080/admin
 * Prometheus metrics
