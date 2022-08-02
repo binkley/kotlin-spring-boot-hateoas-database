@@ -19,7 +19,7 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureJsonTesters
-class MainIT(
+internal class MainIT(
     @LocalServerPort private val port: Int,
     @Autowired private val authorJson: JacksonTester<Author>,
     @Autowired private val bookJson: JacksonTester<Book>,
