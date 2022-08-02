@@ -7,7 +7,7 @@ CREATE TABLE authors
 
 CREATE TABLE books
 (
-    id VARCHAR PRIMARY KEY,
+    isbn VARCHAR PRIMARY KEY,
     author_id VARCHAR REFERENCES authors(id),
     title VARCHAR NOT NULL,
     page_count INTEGER NOT NULL,

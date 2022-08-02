@@ -63,7 +63,7 @@ internal class MainIT(
     fun `should have a book through data HATEOAS`() {
         // TODO: HAL is throwing away the ID
         val expected = Book(
-            id = null,
+            isbn = null,
             authorId = "author-1",
             title = "Harry Potter and the Philosopher's Stone",
             pageCount = 223,
@@ -109,7 +109,7 @@ internal class MainIT(
     @Test
     fun `should have a book through REST endpoint`() {
         val expected = Book(
-            id = "book-1",
+            isbn = "book-1",
             authorId = "author-1",
             title = "Harry Potter and the Philosopher's Stone",
             pageCount = 223,

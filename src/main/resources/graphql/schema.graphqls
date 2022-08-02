@@ -10,7 +10,7 @@ type Query {
 Read more books.
 """
 type Book {
-    id: ID!
+    isbn: ID!
     """
     TODO: Should be a plural, not a singular.
     """
