@@ -1,7 +1,84 @@
+#/bin/sh
+
+: <<EOC
+# Output should look like:
+
+REST
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 03 Aug 2022 14:21:21 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "authorId": "author-1",
+    "isbn": "book-1",
+    "moby": true,
+    "pageCount": 223,
+    "title": "Harry Potter and the Philosopher's Stone"
+}
+
+HATEOAS
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/hal+json
+Date: Wed, 03 Aug 2022 14:20:43 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+{
+    "_links": {
+        "book": {
+            "href": "http://localhost:8080/data/books/book-1"
+        },
+        "self": {
+            "href": "http://localhost:8080/data/books/book-1"
+        }
+    },
+    "authorId": "author-1",
+    "moby": true,
+    "pageCount": 223,
+    "title": "Harry Potter and the Philosopher's Stone"
+}
+
+GRAPHQL
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 03 Aug 2022 14:20:03 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "data": {
+        "bookByISBN": {
+            "author": {
+                "firstName": "Joanne",
+                "id": "author-1",
+                "lastName": "Rowling"
+            },
+            "isbn": "book-1",
+            "moby": true,
+            "pageCount": 223,
+            "title": "Harry Potter and the Philosopher's Stone"
+        }
+    }
+}
+EOC
+
+echo
 echo REST
 http :8080/rest/books/book-1
+
+echo
 echo HATEOAS
 http :8080/data/books/book-1
+
+echo
 echo GRAPHQL
 http :8080/graphql query='{
   bookByISBN(isbn: "book-1") {
