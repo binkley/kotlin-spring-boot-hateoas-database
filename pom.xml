@@ -28,6 +28,8 @@
         <ktlint-maven-plugin.version>1.13.1</ktlint-maven-plugin.version>
         <springdoc.version>1.6.9</springdoc.version>
         <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
+        <springdoc-openapi-maven-plugin.version>1.1
+        </springdoc-openapi-maven-plugin.version>
     </properties>
 
     <!-- TODO: Kotest mistakenly thinks the BOM is a jar -->
@@ -235,6 +237,19 @@
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-maven-plugin</artifactId>
+                <version>${springdoc-openapi-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
