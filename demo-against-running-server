@@ -1,0 +1,18 @@
+echo REST
+http :8080/rest/books/book-1
+echo HATEOAS
+http :8080/data/books/book-1
+echo GRAPHQL
+http :8080/graphql query='{
+  bookByISBN(isbn: "book-1") {
+    isbn
+    title
+    pageCount
+    moby
+    author {
+      id
+      firstName
+      lastName
+    }
+  }
+}'
