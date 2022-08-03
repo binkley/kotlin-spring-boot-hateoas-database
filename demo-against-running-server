@@ -70,15 +70,12 @@ Transfer-Encoding: chunked
 }
 EOC
 
-echo
 echo REST
 http :8080/rest/books/book-1
 
-echo
 echo HATEOAS
 http :8080/data/books/book-1
 
-echo
 echo GRAPHQL
 http :8080/graphql query='{
   bookByISBN(isbn: "book-1") {
