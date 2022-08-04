@@ -70,13 +70,25 @@ Transfer-Encoding: chunked
 }
 EOC
 
-echo REST
+cat <<'EOM'
+REST
+(See also http://localhost:8080/rest in a browser)
+http://localhost:8080/rest/books/book-1
+EOM
 http :8080/rest/books/book-1
 
-echo HATEOAS
+cat <<'EOM'
+HATEOAS
+(See also http://localhost:8080/data in a browser)
+http://localhost:8080/data/books/book-1
+EOM
 http :8080/data/books/book-1
 
-echo GRAPHQL
+cat <<'EOM'
+GRAPHQL
+(See also http://localhost:8080/graphiql in a browser)
+http://localhost:8080/graphql query='<...>'
+EOM
 http :8080/graphql query='{
   bookByISBN(isbn: "book-1") {
     isbn
