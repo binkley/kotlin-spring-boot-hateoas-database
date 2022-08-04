@@ -2,10 +2,11 @@ name: Qodana
 on:
   workflow_dispatch:
   pull_request:
+    paths-ignore:
+      - README.md
   push:
-    branches:
-      - main
-      - 'releases/*'
+    paths-ignore:
+      - README.md
 
 jobs:
   qodana:
