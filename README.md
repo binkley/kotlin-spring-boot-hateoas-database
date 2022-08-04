@@ -17,6 +17,7 @@ stop the program.)
 
 This is a scratch, experimental repository.
 It might force push.
+It might be renamed without warning.
 It might vanish without warning.
 
 ## How to use

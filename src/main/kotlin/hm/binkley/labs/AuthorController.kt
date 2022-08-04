@@ -12,9 +12,9 @@ class AuthorController(
     private val authors: AuthorRepository,
 ) {
     @GetMapping("")
-    fun all() = authors.findAll()
+    fun all(): Iterable<Author> = authors.findAll()
 
     @GetMapping("{id}")
-    fun byId(@PathVariable id: String) = authors.findById(id)
+    fun byId(@PathVariable id: String): Author = authors.findById(id)
         .orElseThrow { ResourceNotFoundException() }
 }
