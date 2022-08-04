@@ -1,9 +1,9 @@
 #/bin/sh
 
-: <<EOC
+: <<'EOC'
 # Output should look like:
 
-REST
+== REST
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
@@ -19,7 +19,7 @@ Transfer-Encoding: chunked
     "title": "Harry Potter and the Philosopher's Stone"
 }
 
-HATEOAS
+== HATEOAS
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/hal+json
@@ -45,7 +45,7 @@ Vary: Access-Control-Request-Headers
     "title": "Harry Potter and the Philosopher's Stone"
 }
 
-GRAPHQL
+== GRAPHQL
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
@@ -67,6 +67,62 @@ Transfer-Encoding: chunked
             "title": "Harry Potter and the Philosopher's Stone"
         }
     }
+}
+
+== GRAPHQL SCHEMA
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Length: 1312
+Content-Type: text/plain;charset=UTF-8
+Date: Thu, 04 Aug 2022 18:44:48 GMT
+Keep-Alive: timeout=60
+
+"Marks the field, argument, input field or enum value as deprecated"
+directive @deprecated(
+    "The reason for the deprecation"
+    reason: String = "No longer supported"
+  ) on FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM_VALUE | INPUT_FIELD_DEFINITION
+
+"Directs the executor to include this field or fragment only when the `if` argument is true"
+directive @include(
+    "Included when true."
+    if: Boolean!
+  ) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"Directs the executor to skip this field or fragment when the `if`'argument is true."
+directive @skip(
+    "Skipped when true."
+    if: Boolean!
+  ) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"Exposes a URL that specifies the behaviour of this scalar."
+directive @specifiedBy(
+    "The URL that specifies the behaviour of this scalar."
+    url: String!
+  ) on SCALAR
+
+"Books do not write themselves, you know."
+type Author {
+  "TODO: A first/last name pair assumes cultural conventions."
+  firstName: String
+  id: ID!
+  lastName: String
+}
+
+"Read more books."
+type Book {
+  "TODO: Should be a plural, not a singular."
+  author: Author
+  isbn: ID!
+  moby: Boolean
+  pageCount: Int
+  title: String
+}
+
+"TODO: Support Dewey Decimal and others."
+type Query {
+  " A comment that should be ignored by documentation tools"
+  bookByISBN(isbn: ID!): Book
 }
 EOC
 
@@ -102,3 +158,10 @@ http :8080/graphql query='{
     }
   }
 }'
+
+cat <<'EOM'
+GRAPHQL SCHEMA
+(See also http://localhost:8080/graphiql in a browser)
+http://localhost:8080/graphql/schema
+EOM
+http :8080/graphql/schema
