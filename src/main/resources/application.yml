@@ -39,6 +39,9 @@ spring:
     graphiql:
       enabled: true
       path: /graphiql
+    schema:
+      printer:
+        enabled: true
   h2:
     console:
       path: /h2

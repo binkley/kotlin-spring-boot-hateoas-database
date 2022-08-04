@@ -84,11 +84,12 @@ shutdown the demonstration.
 ### Pretty, auto-configured/auto-generated UI explorers
 
 * Open API (Swagger) UI
-    - Try http://localhost:8080/rest
+    - Try http://localhost:8080/rest in a browser
 * HATEOAS UI
-    - Try http://localhost:8080/data
-* GraphiQL UI and APIs
-    - Try http://localhost:8080/graphiql
+    - Try http://localhost:8080/data in a browser
+* GraphQL UI, schema, and APIs
+    - Try http://localhost:8080/graphiql in a browser
+    - Try http://localhost:8080/graphql/schema
 
 ### In-memory persistence for demo
 
