@@ -26,7 +26,7 @@
         <kotest.version>5.4.1</kotest.version>
         <kotlin.version>1.7.10</kotlin.version>
         <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
-        <ktlint-maven-plugin.version>1.13.1</ktlint-maven-plugin.version>
+        <ktlint-maven-plugin.version>1.14.0</ktlint-maven-plugin.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
         <springdoc.version>1.6.9</springdoc.version>
         <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
