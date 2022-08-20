@@ -22,6 +22,14 @@ tasks:
     run:
       container: build-env
       command: ./mvnw --no-transfer-progress clean verify
+  run:
+    description: Runs the Spring Boot service in the foreground
+    run:
+      container: build-env
+      command: ./mvnw spring-boot:run
+      ports:
+        - local: 8080
+          container: 8080
   shell:
     description: Opens a shell in the container
     run:

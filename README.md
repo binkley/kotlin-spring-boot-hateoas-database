@@ -32,6 +32,8 @@ If satisfied, try running the program. In a first terminal, execute:
 
 ```
 $ ./mvnw spring-boot:run
+# Or with Docker
+$ ./batect run
 ```
 
 Once the program is ready (look for the "Started HateoasApplicationKt"
