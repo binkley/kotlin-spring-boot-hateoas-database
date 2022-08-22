@@ -28,7 +28,7 @@
         <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>1.13.1</ktlint-maven-plugin.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
-        <springdoc.version>1.6.10</springdoc.version>
+        <springdoc.version>1.6.11</springdoc.version>
         <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
         <!-- @formatter:on -->
     </properties>
