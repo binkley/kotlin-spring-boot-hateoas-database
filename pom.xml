@@ -26,7 +26,7 @@
         <kotest.version>5.5.1</kotest.version>
         <kotlin.version>1.7.20</kotlin.version>
         <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
-        <ktlint-maven-plugin.version>1.13.1</ktlint-maven-plugin.version>
+        <ktlint-maven-plugin.version>1.15.2</ktlint-maven-plugin.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
         <springdoc.version>1.6.12</springdoc.version>
         <versions-maven-plugin.version>2.12.0</versions-maven-plugin.version>
@@ -192,7 +192,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>format</goal>
+                            <!-- <goal>format</goal> -->
                             <goal>check</goal>
                         </goals>
                     </execution>
