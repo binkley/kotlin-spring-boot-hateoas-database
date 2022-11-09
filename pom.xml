@@ -24,7 +24,7 @@
         <!-- @formatter:off -->
         <java.version>17</java.version>
         <kotest.version>5.5.4</kotest.version>
-        <kotlin.version>1.7.20</kotlin.version>
+        <kotlin.version>1.7.21</kotlin.version>
         <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>1.15.2</ktlint-maven-plugin.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
