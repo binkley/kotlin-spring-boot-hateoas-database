@@ -1,5 +1,7 @@
 package hm.binkley.labs
 
+import org.springframework.data.domain.Pageable
+import org.springframework.data.domain.Pageable.unpaged
 import org.springframework.data.rest.webmvc.ResourceNotFoundException
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -11,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController
 class BookController(
     private val books: BookRepository,
 ) {
-    @GetMapping("")
-    fun all(): Iterable<Book> = books.findAll()
+    @GetMapping
+    fun all(pageable: Pageable = unpaged()): Iterable<Book> =
+        books.findAll(pageable).content
 
     @GetMapping("{isbn}")
     fun byISBN(@PathVariable isbn: String): Book = books.findById(isbn)

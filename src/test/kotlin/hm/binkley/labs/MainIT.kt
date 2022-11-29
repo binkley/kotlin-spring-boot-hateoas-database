@@ -44,9 +44,8 @@ internal class MainIT(
 
     @Test
     fun `should have an author through data HATEOAS`() {
-        // TODO: HAL is throwing away the ID
         val expected = Author(
-            id = null,
+            id = null, // TODO: Is there a nicer way to do this?
             firstName = "Joanne",
             lastName = "Rowling",
         )
@@ -58,7 +57,7 @@ internal class MainIT(
     }
 
     @Test
-    fun `should have a book through data HATEOAS`() {
+    fun `should find a book by example through data HATEOAS`() {
         // TODO: HAL is throwing away the ID
         val expected = Book(
             isbn = null,
@@ -83,6 +82,14 @@ internal class MainIT(
     }
 
     @Test
+    fun `should have a limited view of authors through REST endpoint`() {
+        val json = get("/rest/authors?page=1&size=1")
+        val actual = authorsJson.parseObject(json)
+
+        actual shouldHaveSize 1
+    }
+
+    @Test
     fun `should have an author through REST endpoint`() {
         val expected = Author(
             id = "author-1",
@@ -102,6 +109,14 @@ internal class MainIT(
         val actual = booksJson.parseObject(json)
 
         actual shouldHaveSize 3
+    }
+
+    @Test
+    fun `should have a limited view of books through REST endpoint`() {
+        val json = get("/rest/books?page=1&size=1")
+        val actual = booksJson.parseObject(json)
+
+        actual shouldHaveSize 1
     }
 
     @Test

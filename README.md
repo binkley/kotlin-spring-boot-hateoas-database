@@ -111,3 +111,8 @@ shutdown the demonstration.
 * Prometheus metrics
     - Try http://localhost:8080/admin/prometheus
 * Auto-refresh of server on code changes
+
+## TODO
+
+* Sorting for REST
+* Paging and sorting for other endpoints
