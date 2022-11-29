@@ -11,7 +11,7 @@ class GraphqlController(
     private val books: BookRepository,
 ) {
     @QueryMapping
-    fun bookByISBN(@Argument isbn: String): Book = books.findById(isbn).get()
+    fun bookByID(@Argument id: String): Book = books.findById(id).get()
 
     @SchemaMapping
     fun author(book: Book): Author = authors.findById(book.authorId).get()

@@ -112,7 +112,6 @@ internal class MainIT(
     @Test
     fun `should have all books through REST endpoint`() {
         val json = get("/rest/books")
-        println("ALL JSON -> $json")
         val actual = booksJson.parseObject(json)
 
         actual shouldHaveSize 3
