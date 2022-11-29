@@ -7,9 +7,10 @@ CREATE TABLE authors
 
 CREATE TABLE books
 (
-    isbn VARCHAR PRIMARY KEY,
+    id VARCHAR PRIMARY KEY,
+    isbn VARCHAR NOT NULL,
     author_id VARCHAR REFERENCES authors(id),
     title VARCHAR NOT NULL,
-    page_count INTEGER NOT NULL,
+    pages INTEGER NOT NULL,
     moby BOOLEAN NOT NULL
 );

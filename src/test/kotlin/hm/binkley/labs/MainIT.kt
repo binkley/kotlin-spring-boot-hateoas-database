@@ -1,8 +1,11 @@
 package hm.binkley.labs
 
+import io.kotest.assertions.fail
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters
@@ -60,10 +63,11 @@ internal class MainIT(
     fun `should find a book by example through data HATEOAS`() {
         // TODO: HAL is throwing away the ID
         val expected = Book(
-            isbn = null,
+            id = null, // TODO: Is there a nicer way to do this?
+            isbn = "0-00-000000-0",
             authorId = "author-1",
             title = "Harry Potter and the Philosopher's Stone",
-            pageCount = 223,
+            pages = 223,
             moby = true,
         )
 
@@ -106,26 +110,31 @@ internal class MainIT(
     @Test
     fun `should have all books through REST endpoint`() {
         val json = get("/rest/books")
+        println("ALL JSON -> $json")
         val actual = booksJson.parseObject(json)
 
         actual shouldHaveSize 3
     }
 
+    @Disabled
     @Test
     fun `should have a limited view of books through REST endpoint`() {
-        val json = get("/rest/books?page=1&size=1")
+        fail("TODO: FIX PAGING AND SORTING")
+        val json = get("/rest/books?page=1&size=2&sort=DESC")
         val actual = booksJson.parseObject(json)
 
-        actual shouldHaveSize 1
+        actual shouldHaveSize 2
+        actual[0].title shouldBeGreaterThan actual[1].title
     }
 
     @Test
     fun `should have a book through REST endpoint`() {
         val expected = Book(
-            isbn = "book-1",
+            id = "book-1",
+            isbn = "0-00-000000-0",
             authorId = "author-1",
             title = "Harry Potter and the Philosopher's Stone",
-            pageCount = 223,
+            pages = 223,
             moby = true,
         )
 

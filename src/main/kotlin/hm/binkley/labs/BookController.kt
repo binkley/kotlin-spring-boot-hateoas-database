@@ -14,8 +14,12 @@ class BookController(
     private val books: BookRepository,
 ) {
     @GetMapping
-    fun all(pageable: Pageable = unpaged()): Iterable<Book> =
-        books.findAll(pageable).content
+    fun all(
+        pageable: Pageable = unpaged(),
+    ): Iterable<Book> {
+        println("PAGEABLE = $pageable")
+        return books.findAll(pageable).content
+    }
 
     @GetMapping("{isbn}")
     fun byISBN(@PathVariable isbn: String): Book = books.findById(isbn)
