@@ -13,6 +13,8 @@ Kick the tires on Spring Boot HATEOAS with a database.
 (Do not fret, this project uses an in-memory database that vanishes when you
 stop the program.)
 
+Run on the new Spring Boot 3 release.
+
 ## Caveat emptor
 
 This is a scratch, experimental repository.
