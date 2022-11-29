@@ -1,11 +1,8 @@
 package hm.binkley.labs
 
-import io.kotest.assertions.fail
 import io.kotest.matchers.collections.shouldHaveSize
-import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters
@@ -87,10 +84,15 @@ internal class MainIT(
 
     @Test
     fun `should have a limited view of authors through REST endpoint`() {
-        val json = get("/rest/authors?page=1&size=1")
+        val expected = Author(
+            id = "author-1",
+            firstName = "Joanne",
+            lastName = "Rowling",
+        )
+        val json = get("/rest/authors?sort=lastName,desc&size=1")
         val actual = authorsJson.parseObject(json)
 
-        actual shouldHaveSize 1
+        actual shouldBe listOf(expected)
     }
 
     @Test
@@ -116,15 +118,20 @@ internal class MainIT(
         actual shouldHaveSize 3
     }
 
-    @Disabled
     @Test
     fun `should have a limited view of books through REST endpoint`() {
-        fail("TODO: FIX PAGING AND SORTING")
-        val json = get("/rest/books?page=1&size=2&sort=DESC")
+        val expected = Book(
+            id = "book-2",
+            isbn = "0-00-000000-1",
+            authorId = "author-2",
+            title = "Moby Dick",
+            pages = 635,
+            moby = false,
+        )
+        val json = get("/rest/books?sort=pages,desc&size=1")
         val actual = booksJson.parseObject(json)
 
-        actual shouldHaveSize 2
-        actual[0].title shouldBeGreaterThan actual[1].title
+        actual shouldBe listOf(expected)
     }
 
     @Test
