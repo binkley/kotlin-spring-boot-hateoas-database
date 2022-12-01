@@ -99,8 +99,8 @@ shutdown the demonstration.
 ### In-memory persistence for demo
 
 * H2 in-memory database with dummy data preloaded ("Joanne Rowling")
-    - Try http://localhost:8080/rest/authors/1
-    - Try http://localhost:8080/data/authors/1
+    - Try http://localhost:8080/rest/authors/author-1
+    - Try http://localhost:8080/data/authors/author-1
 * H2 console enabled
     - Try http://localhost:8080/h2
 
