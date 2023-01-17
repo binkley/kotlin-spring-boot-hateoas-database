@@ -6,6 +6,7 @@
 
 [![build](https://github.com/binkley/kotlin-spring-boot-hateoas-database/workflows/build/badge.svg)](https://github.com/binkley/kotlin-spring-boot-hateoas-database/actions)
 [![issues](https://img.shields.io/github/issues/binkley/kotlin-spring-boot-hateoas-database.svg)](https://github.com/binkley/kotlin-spring-boot-hateoas-database/issues/)
+[![pull requests](https://img.shields.io/github/issues-pr/binkley/kotlin-spring-boot-hateoas-database.svg)](https://github.com/binkley/kotlin-spring-boot-hateoas-database/pulls)
 [![vulnerabilities](https://snyk.io/test/github/binkley/kotlin-spring-boot-hateoas-database/badge.svg)](https://snyk.io/test/github/binkley/kotlin-spring-boot-hateoas-database)
 [![license](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
 
