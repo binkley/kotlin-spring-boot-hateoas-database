@@ -21,6 +21,7 @@
     </description>
 
     <properties>
+        <!-- NB: Through out we let Spring Boot manage most versioning -->
         <!-- @formatter:off -->
         <java.version>17</java.version>
         <kotest.version>5.5.4</kotest.version>
@@ -28,6 +29,7 @@
         <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>1.15.2</ktlint-maven-plugin.version>
         <springdoc.version>2.0.2</springdoc.version>
+        <testcontainers.version>1.17.6</testcontainers.version>
         <versions-maven-plugin.version>2.14.2</versions-maven-plugin.version>
         <!-- @formatter:on -->
     </properties>
@@ -39,6 +41,13 @@
                 <groupId>org.jetbrains.kotlinx</groupId>
                 <artifactId>kotlinx-coroutines-bom</artifactId>
                 <version>${kotlinx-coroutines.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>${testcontainers.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -163,6 +172,12 @@
             <groupId>io.kotest</groupId>
             <artifactId>kotest-assertions-core-jvm</artifactId>
             <version>${kotest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
