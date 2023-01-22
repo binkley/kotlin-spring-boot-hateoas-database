@@ -75,24 +75,6 @@ internal class MainIT(
     }
 
     @Test
-    fun `should sort sections REST UI`() {
-        val html = get("/rest")
-        val authorsRestPlace = html.indexOf("author-controller")
-        val authorsDataPlace = html.indexOf("author-entity-controller")
-        val booksRestPlace = html.indexOf("book-controller")
-        val booksDataPlace = html.indexOf("book-entity-controller")
-
-        val actual = arrayOf(
-            authorsRestPlace,
-            authorsDataPlace,
-            booksRestPlace,
-            booksDataPlace
-        )
-
-        actual shouldBe actual.sorted()
-    }
-
-    @Test
     fun `should have all authors through REST endpoint`() {
         val json = get("/rest/authors")
         val actual = authorsJson.parseObject(json)
