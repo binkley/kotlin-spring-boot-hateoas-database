@@ -96,6 +96,8 @@ shutdown the demonstration.
 * GraphQL UI, schema, and APIs
     - Try http://localhost:8080/graphiql in a browser
     - Try http://localhost:8080/graphql/schema
+* Generated OpenAPI specification
+    - After `./mvnw verify` see `target/openapi.json`
 
 ### In-memory persistence for demo
 
