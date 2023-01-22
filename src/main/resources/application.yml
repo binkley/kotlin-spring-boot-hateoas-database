@@ -61,6 +61,8 @@ springdoc:
   writer-with-order-by-keys: true
   swagger-ui:
     display-request-duration: true
+    operations-sorter: alpha
     path: /rest
     show-common-extensions: true
     show-extensions: true
+    tags-sorter: alpha
