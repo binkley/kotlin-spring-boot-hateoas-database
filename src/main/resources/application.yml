@@ -62,3 +62,5 @@ springdoc:
   swagger-ui:
     display-request-duration: true
     path: /rest
+    show-common-extensions: true
+    show-extensions: true
