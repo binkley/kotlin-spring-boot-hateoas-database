@@ -307,11 +307,23 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-maven-plugin</artifactId>
                 <version>${springdoc-openapi-maven-plugin.version}</version>
-                <configuration>
-                    <apiDocsUrl>http://localhost:${server.port}/v3/api-docs</apiDocsUrl>
-                </configuration>
                 <executions>
                     <execution>
+                        <id>generate-json</id>
+                        <configuration>
+                            <apiDocsUrl>http://localhost:${server.port}/v3/api-docs</apiDocsUrl>
+                            <outputFileName>openapi.json</outputFileName>
+                        </configuration>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-yaml</id>
+                        <configuration>
+                            <apiDocsUrl>http://localhost:${server.port}/v3/api-docs.yaml</apiDocsUrl>
+                            <outputFileName>openapi.yaml</outputFileName>
+                        </configuration>
                         <goals>
                             <goal>generate</goal>
                         </goals>
