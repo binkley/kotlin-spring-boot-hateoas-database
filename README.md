@@ -105,15 +105,16 @@ shutdown the demonstration.
 * H2 console enabled
     - Try http://localhost:8080/h2
 
-### Generic Spring Boot stuff 
+### Additional Spring Boot features
 
 * Maximal actuator configuration
     - Try http://localhost:8080/admin
 * Prometheus metrics
     - Try http://localhost:8080/admin/prometheus
-* Auto-refresh of server on code changes
+* Auto-refresh of server on code changes for developers
 
 ## TODO
 
 * Sorting for REST
 * Paging and sorting for other endpoints
+* Test containers test (see binkley/modern-java-practices#278)
