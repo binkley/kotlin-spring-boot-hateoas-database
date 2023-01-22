@@ -100,6 +100,7 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${springdoc.version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- HATEOAS -->
@@ -110,6 +111,7 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-rest-hal-explorer</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- GraphQL -->
@@ -122,6 +124,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- Dev support -->
