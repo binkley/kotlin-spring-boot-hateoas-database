@@ -58,5 +58,7 @@ springdoc:
   show-actuator: true
   model-and-view-allowed: true
   writer-with-default-pretty-printer: true
+  writer-with-order-by-keys: true
   swagger-ui:
+    display-request-duration: true
     path: /rest
