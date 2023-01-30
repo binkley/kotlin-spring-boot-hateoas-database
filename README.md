@@ -115,6 +115,16 @@ shutdown the demonstration.
     - Try http://localhost:8080/admin/prometheus
 * Auto-refresh of server on code changes for developers
 
+### Tracing/debugging from IDE
+
+Run the program configured with JVM debugging.
+This configured in [`batect.yml`](./batect.yml) for the standard port of 5005,
+and run as:
+```shell
+$ ./batect debug
+```
+Attach the remote debugging facility of your IDE to this port.
+
 ## TODO
 
 * Sorting for REST

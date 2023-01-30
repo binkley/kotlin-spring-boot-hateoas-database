@@ -30,6 +30,17 @@ tasks:
       ports:
         - local: 8080
           container: 8080
+  debug:
+    description: Runs the Spring Boot service in the foreground for debugging
+# -p 5005:5005 -e JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n"
+    run:
+      container: build-env
+      command: ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+      ports:
+        - local: 8080
+          container: 8080
+        - local: 5005
+          container: 5005
   shell:
     description: Opens a shell in the container
     run:
