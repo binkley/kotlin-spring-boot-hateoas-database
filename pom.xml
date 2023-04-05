@@ -25,14 +25,14 @@
         <!-- @formatter:off -->
         <java.version>17</java.version>
         <kotest.version>5.5.5</kotest.version>
-        <kotlin.version>1.8.10</kotlin.version>
-        <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
+        <kotlin.version>1.8.20</kotlin.version>
+        <kotlinx-coroutines.version>1.7.0-Beta</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>1.16.0</ktlint-maven-plugin.version>
         <maven-wrapper-plugin.version>3.2.0</maven-wrapper-plugin.version>
         <maven.version>3.9.0</maven.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
         <springdoc.version>2.1.0</springdoc.version>
-        <testcontainers.version>1.17.6</testcontainers.version>
+        <testcontainers.version>1.18.0</testcontainers.version>
         <versions-maven-plugin.version>2.15.0</versions-maven-plugin.version>
         <!-- @formatter:on -->
     </properties>
