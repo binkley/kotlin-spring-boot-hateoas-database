@@ -1,6 +1,85 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
+# Better debugging output when using `bash -x <script>`
+export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]:+${FUNCNAME[0]}():} '
+
+# Enable good runtime checks by Bash when executing the script
 set -e
+set -u
+set -o pipefail
+
+function -print-usage() {
+    cat <<EOU
+Usage: $0 [-h|--help][-s|--server]
+EOU
+}
+
+function -print-help() {
+    -print-usage
+    cat <<EOH
+
+Options:
+  -h, --help    Print help and exit normally
+  -s, --server  Run server in background for duration of script
+EOH
+}
+
+function -check-status() {
+    curl -s -o /dev/null -w '%{http_code}\n' "$@"
+}
+
+function -run-server() {
+    ./mvnw -q spring-boot:run \
+        -Dspring-boot.run.arguments=--logging.level.root=ERROR &
+
+    for n in {1..30}
+    do
+        sleep 1
+        http_code="$(-check-status http://localhost:8080/admin/health)" || true
+        case $http_code in
+        000 ) echo "$0: Health check #$n..." ;;  # Still waiting or died
+        200 ) return ;;
+        * )
+            echo "$0: Health error: expected 200; got $http_code" >&2
+            exit 1
+            ;;
+        esac
+    done
+
+    # See if server is even running
+    if lsof -i :8080
+    then
+        echo "$0: Server not responding on 8080" >&2
+        exit 1
+    else
+        echo "$0: Server not listening on 8080" >&2
+        exit 1
+    fi
+}
+
+server=false
+while getopts :hs-: opt; do
+    # Complex, but addresses "--foo=bar" type options
+    [[ $opt == - ]] && opt=${OPTARG%%=*} OPTARG=${OPTARG#*=}
+    case $opt in
+    h | help)
+        -print-help
+        exit 0
+        ;;
+    s | server) server=true ;;
+    *)
+        -print-usage >&2
+        exit 2
+        ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if $server
+then
+    trap 'kill -- -$$' EXIT  # Tell background jobs to exit
+    -run-server
+fi
 
 : <<'EOC'
 # Output should look like:
