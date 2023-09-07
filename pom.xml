@@ -24,7 +24,7 @@
         <!-- NB: Through out we let Spring Boot manage most versioning -->
         <!-- @formatter:off -->
         <java.version>17</java.version>
-        <kotest.version>5.7.1</kotest.version>
+        <kotest.version>5.7.2</kotest.version>
         <kotlin.version>1.9.10</kotlin.version>
         <kotlinx-coroutines.version>1.7.3</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>2.0.0</ktlint-maven-plugin.version>
