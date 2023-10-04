@@ -45,7 +45,8 @@ internal class MainIT(
     @Test
     fun `should have an author through data HATEOAS`() {
         val expected = Author(
-            id = null, // TODO: Is there a nicer way to do this?
+            // TODO: Is there a nicer way to do this?
+            id = null,
             firstName = "Joanne",
             lastName = "Rowling",
         )
@@ -60,7 +61,8 @@ internal class MainIT(
     fun `should find a book by example through data HATEOAS`() {
         // TODO: HAL is throwing away the ID
         val expected = Book(
-            id = null, // TODO: Is there a nicer way to do this?
+            // TODO: Is there a nicer way to do this?
+            id = null,
             isbn = "0-00-000000-0",
             authorId = "author-1",
             title = "Harry Potter and the Philosopher's Stone",
