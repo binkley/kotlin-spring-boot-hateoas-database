@@ -63,7 +63,7 @@ internal class MainIT(
         val expected = Book(
             // TODO: Is there a nicer way to do this?
             id = null,
-            isbn = "0-00-000000-0",
+            isbn = "978-1-408855-652",
             authorId = "author-1",
             title = "Harry Potter and the Philosopher's Stone",
             pages = 223,
@@ -81,15 +81,15 @@ internal class MainIT(
         val json = get("/rest/authors")
         val actual = authorsJson.parseObject(json)
 
-        actual shouldHaveSize 3
+        actual shouldHaveSize 5
     }
 
     @Test
     fun `should have a limited view of authors through REST endpoint`() {
         val expected = Author(
-            id = "author-1",
-            firstName = "Joanne",
-            lastName = "Rowling",
+            id = "author-5",
+            firstName = "John",
+            lastName = "Tolkien",
         )
         val json = get("/rest/authors?sort=lastName,desc&size=1")
         val actual = authorsJson.parseObject(json)
@@ -116,18 +116,18 @@ internal class MainIT(
         val json = get("/rest/books")
         val actual = booksJson.parseObject(json)
 
-        actual shouldHaveSize 3
+        actual shouldHaveSize 5
     }
 
     @Test
     fun `should have a limited view of books through REST endpoint`() {
         val expected = Book(
-            id = "book-2",
-            isbn = "0-00-000000-1",
-            authorId = "author-2",
-            title = "Moby Dick",
-            pages = 635,
-            moby = false,
+            id = "book-4",
+            isbn = "978-1-250254-498",
+            authorId = "author-4",
+            title = "Three-Body Problem",
+            pages = 1515,
+            moby = true,
         )
         val json = get("/rest/books?sort=pages,desc&size=1")
         val actual = booksJson.parseObject(json)
@@ -139,7 +139,7 @@ internal class MainIT(
     fun `should have a book through REST endpoint`() {
         val expected = Book(
             id = "book-1",
-            isbn = "0-00-000000-0",
+            isbn = "978-1-408855-652",
             authorId = "author-1",
             title = "Harry Potter and the Philosopher's Stone",
             pages = 223,
