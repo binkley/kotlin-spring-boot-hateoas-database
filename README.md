@@ -107,6 +107,8 @@ shutdown the demonstration.
     - Try http://localhost:8080/data/authors/author-1
 * H2 console enabled
     - Try http://localhost:8080/h2
+    - The JDBC connect string is `jdbc:h2:mem:demo`
+    - The user and password are "sa" and "password"
 
 ### Additional Spring Boot features
 
