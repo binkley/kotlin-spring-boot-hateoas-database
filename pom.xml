@@ -29,7 +29,7 @@
         <kotlinx-coroutines.version>1.7.3</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>3.0.0</ktlint-maven-plugin.version>
         <maven-wrapper-plugin.version>3.2.0</maven-wrapper-plugin.version>
-        <maven.version>3.9.0</maven.version>
+        <maven.version>3.9.6</maven.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
         <springdoc.version>2.2.0</springdoc.version>
         <testcontainers.version>1.19.3</testcontainers.version>
