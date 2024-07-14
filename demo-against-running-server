@@ -20,7 +20,8 @@ function -print-help() {
 
 Options:
   -h, --help    Print help and exit normally
-  -s, --server  Run server in background for duration of script
+  -s, --server  Run server in background for duration of script.
+                Default is to run against an existing local server instance.
 EOH
 }
 

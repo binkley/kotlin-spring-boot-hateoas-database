@@ -24,16 +24,16 @@
         <!-- NB: Through out we let Spring Boot manage most versioning -->
         <!-- @formatter:off -->
         <java.version>21</java.version>
-        <kotest.version>5.8.1</kotest.version>
-        <kotlin.version>2.0.0-RC1</kotlin.version>
-        <kotlinx-coroutines.version>1.8.1-Beta</kotlinx-coroutines.version>
+        <kotest.version>5.9.1</kotest.version>
+        <kotlin.version>2.0.20-Beta2</kotlin.version>
+        <kotlinx-coroutines.version>1.9.0-RC</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>3.2.0</ktlint-maven-plugin.version>
-        <maven-wrapper-plugin.version>3.3.0</maven-wrapper-plugin.version>
+        <maven-wrapper-plugin.version>3.3.2</maven-wrapper-plugin.version>
         <maven.version>3.9.6</maven.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
         <springdoc.version>2.2.0</springdoc.version>
-        <testcontainers.version>1.19.7</testcontainers.version>
-        <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
+        <testcontainers.version>1.19.8</testcontainers.version>
+        <versions-maven-plugin.version>2.17.0</versions-maven-plugin.version>
         <!-- @formatter:on -->
     </properties>
 
