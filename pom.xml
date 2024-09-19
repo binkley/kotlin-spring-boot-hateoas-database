@@ -21,7 +21,11 @@
     </description>
 
     <properties>
-        <!-- NB: Through out we let Spring Boot manage most versioning -->
+        <!-- TODO: Research what current Spring Boot versions are for below -->
+        <!-- TODO: Research 'spring-data-releasetrain.version';
+        see https://docs.spring.io/spring-boot/maven-plugin/using.html#using.parent-pom -->
+
+        <!-- NB: Throughout we let Spring Boot manage most versioning -->
         <!-- @formatter:off -->
         <java.version>21</java.version>
         <kotest.version>5.9.1</kotest.version>
