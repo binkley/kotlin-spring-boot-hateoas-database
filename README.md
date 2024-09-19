@@ -90,15 +90,7 @@ You can create a new project with most features using Spring Initializer to
 bootstrap:
 
 ```shell
-$ spring init \
-    --name kotlin-spring-boot-hateoas-database \
-    --group-id hm.binkley.labs \
-    --description 'Kick the tires on Spring Boot HATEOAS with a database' \
-    --build maven \
-    --boot-version 3.3.4 \
-    --java-version 21 \
-    --language kotlin \
-    --dependencies actuator,data-jdbc,configuration-processor,data-rest,data-rest-explorer,devtools,graphql,h2,hateoas
+$ spring init --name kotlin-spring-boot-hateoas-database --group-id hm.binkley.labs --description 'Kick the tires on Spring Boot HATEOAS with a database' --build maven --boot-version 3.3.4 --java-version 21 --language kotlin --dependencies actuator,data-jdbc,configuration-processor,data-rest,data-rest-explorer,devtools,graphql,h2,hateoas,restdocs
 ```
 
 ### Pretty, auto-configured/auto-generated UI explorers
