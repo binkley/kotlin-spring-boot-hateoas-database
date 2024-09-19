@@ -125,6 +125,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Maintenance -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Dev support -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
