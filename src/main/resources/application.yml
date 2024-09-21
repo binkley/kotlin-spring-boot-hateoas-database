@@ -34,8 +34,9 @@ spring:
       basePath: /data
   datasource:
     driver-class-name: org.h2.Driver
-    # TODO: Is close-on-exit a bandaid?
-    url: jdbc:h2:mem:demo;DB_CLOSE_ON_EXIT=FALSE
+    # TODO: Failure shutting H2 down, but this does not fix:
+    # url: jdbc:h2:mem:demo;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:demo
     username: sa
     password: password
   graphql:
