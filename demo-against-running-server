@@ -10,7 +10,7 @@ set -o pipefail
 
 function print-usage() {
     cat <<EOU
-Usage: $0 [-h|--help][-s|--server]
+Usage: $0 [-d|--debug][-h|--help][-s|--server]
 EOU
 }
 
@@ -19,6 +19,7 @@ function print-help() {
     cat <<EOH
 
 Options:
+  -d, --debug   Trace this script
   -h, --help    Print help and exit normally
   -s, --server  Run server in background for duration of script.
                 Default is to run against an existing local server instance.
@@ -29,11 +30,19 @@ function check-status() {
     curl -s -o /dev/null -w '%{http_code}\n' "$@"
 }
 
+function shutdown-server {
+    local status=$?
+    local server_pid="$1"
+
+    http POST :8080/admin/shutdown
+    wait "$server_pid" 2>/dev/null || true
+    exit "$status"
+}
+
 function run-server() {
     ./mvnw -q spring-boot:run \
         -Dspring-boot.run.arguments=--logging.level.root=ERROR &
-    local shutdown
-    printf -v shutdown 'http POST :8080/admin/shutdown; wait %d' $!
+    local server_pid=$!
 
     for n in {1..30}
     do
@@ -43,7 +52,7 @@ function run-server() {
         000 ) echo "$0: Health check #$n..." ;;  # Still waiting or died
         200 )
             # shellcheck disable=SC2064
-            trap "$shutdown" EXIT
+            trap "shutdown-server $server_pid" EXIT
             return
             ;;
         * )
@@ -64,11 +73,13 @@ function run-server() {
     fi
 }
 
+debug=false
 server=false
-while getopts :hs-: opt; do
+while getopts :dhs-: opt; do
     # Complex, but addresses "--foo=bar" type options
     [[ $opt == - ]] && opt=${OPTARG%%=*} OPTARG=${OPTARG#*=}
     case $opt in
+    d | debug) debug=true ;;
     h | help)
         print-help
         exit 0
@@ -81,6 +92,8 @@ while getopts :hs-: opt; do
     esac
 done
 shift $((OPTIND - 1))
+
+$debug && set -x
 
 $server && run-server
 
