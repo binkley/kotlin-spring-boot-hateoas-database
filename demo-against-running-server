@@ -32,6 +32,8 @@ function check-status() {
 function run-server() {
     ./mvnw -q spring-boot:run \
         -Dspring-boot.run.arguments=--logging.level.root=ERROR &
+    local shutdown
+    printf -v shutdown 'http POST :8080/admin/shutdown; wait %d' $!
 
     for n in {1..30}
     do
@@ -39,7 +41,11 @@ function run-server() {
         http_code="$(check-status http://localhost:8080/admin/health)" || true
         case $http_code in
         000 ) echo "$0: Health check #$n..." ;;  # Still waiting or died
-        200 ) return ;;
+        200 )
+            # shellcheck disable=SC2064
+            trap "$shutdown" EXIT
+            return
+            ;;
         * )
             echo "$0: Health error: expected 200; got $http_code" >&2
             exit 1
@@ -76,11 +82,7 @@ while getopts :hs-: opt; do
 done
 shift $((OPTIND - 1))
 
-if $server
-then
-    trap 'kill -- -$$' EXIT  # Tell background jobs to exit
-    run-server
-fi
+$server && run-server
 
 : <<'EOC'
 # Output should look like:
