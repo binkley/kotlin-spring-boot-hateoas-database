@@ -8,14 +8,14 @@ set -e
 set -u
 set -o pipefail
 
-function -print-usage() {
+function print-usage() {
     cat <<EOU
 Usage: $0 [-h|--help][-s|--server]
 EOU
 }
 
-function -print-help() {
-    -print-usage
+function print-help() {
+    print-usage
     cat <<EOH
 
 Options:
@@ -25,18 +25,18 @@ Options:
 EOH
 }
 
-function -check-status() {
+function check-status() {
     curl -s -o /dev/null -w '%{http_code}\n' "$@"
 }
 
-function -run-server() {
+function run-server() {
     ./mvnw -q spring-boot:run \
         -Dspring-boot.run.arguments=--logging.level.root=ERROR &
 
     for n in {1..30}
     do
         sleep 1
-        http_code="$(-check-status http://localhost:8080/admin/health)" || true
+        http_code="$(check-status http://localhost:8080/admin/health)" || true
         case $http_code in
         000 ) echo "$0: Health check #$n..." ;;  # Still waiting or died
         200 ) return ;;
@@ -64,12 +64,12 @@ while getopts :hs-: opt; do
     [[ $opt == - ]] && opt=${OPTARG%%=*} OPTARG=${OPTARG#*=}
     case $opt in
     h | help)
-        -print-help
+        print-help
         exit 0
         ;;
     s | server) server=true ;;
     *)
-        -print-usage >&2
+        print-usage >&2
         exit 2
         ;;
     esac
@@ -79,7 +79,7 @@ shift $((OPTIND - 1))
 if $server
 then
     trap 'kill -- -$$' EXIT  # Tell background jobs to exit
-    -run-server
+    run-server
 fi
 
 : <<'EOC'
