@@ -44,7 +44,7 @@ function run-server() {
         -Dspring-boot.run.arguments=--logging.level.root=ERROR &
     local server_pid=$!
 
-    for n in {1..30}
+    for n in {1..10}
     do
         sleep 1
         http_code="$(check-status http://localhost:8080/admin/health)" || true
