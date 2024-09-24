@@ -26,8 +26,9 @@ Options:
 EOH
 }
 
-function check-status() {
-    curl -s -o /dev/null -w '%{http_code}\n' "$@"
+function get-health-status() {
+    curl -s -o /dev/null -w '%{http_code}\n' \
+        http://localhost:8080/admin/health
 }
 
 function shutdown-server {
@@ -47,8 +48,8 @@ function run-server() {
     for n in {1..10}
     do
         sleep 1
-        http_code="$(check-status http://localhost:8080/admin/health)" || true
-        case $http_code in
+        http_code="$(get-health-status)" || true
+        case "$http_code" in
         000 ) echo "$0: Health check #$n..." ;;  # Still waiting or died
         200 )
             # shellcheck disable=SC2064
