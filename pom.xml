@@ -36,7 +36,7 @@
         <maven.version>3.9.9</maven.version>
         <springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
         <springdoc-openapi.version>2.6.0</springdoc-openapi.version>
-        <testcontainers.version>1.20.1</testcontainers.version>
+        <testcontainers.version>1.20.2</testcontainers.version>
         <versions-maven-plugin.version>2.17.1</versions-maven-plugin.version>
         <!-- @formatter:on -->
     </properties>
