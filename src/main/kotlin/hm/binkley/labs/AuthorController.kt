@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/rest/authors")
 @RestController
-class AuthorController(
-    private val authors: AuthorRepository,
-) {
+class AuthorController(private val authors: AuthorRepository) {
     @GetMapping
     fun all(pageable: Pageable = unpaged()): Iterable<Author> =
         authors.findAll(pageable).content

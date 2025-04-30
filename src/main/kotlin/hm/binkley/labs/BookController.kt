@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/rest/books")
 @RestController
-class BookController(
-    private val books: BookRepository,
-) {
+class BookController(private val books: BookRepository) {
     @GetMapping
     fun all(pageable: Pageable = unpaged()): Iterable<Book> =
         books.findAll(pageable).content
