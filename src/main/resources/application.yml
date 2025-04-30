@@ -55,6 +55,9 @@ spring:
       data-locations: classpath:sql/data.sql
       schema-locations: classpath:sql/schema.sql
       mode: always
+  web:
+    resources:
+      add-mappings: false  # Disable static page mappings
 
 springdoc:
   show-actuator: true
