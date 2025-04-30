@@ -334,7 +334,7 @@
                     <execution>
                         <id>generate-json</id>
                         <configuration>
-                            <apiDocsUrl>http://localhost:${server.port}/v3/api-docs</apiDocsUrl>
+                            <apiDocsUrl>http://localhost:${server.port}/openapi</apiDocsUrl>
                             <outputFileName>openapi.json</outputFileName>
                         </configuration>
                         <goals>
@@ -344,7 +344,7 @@
                     <execution>
                         <id>generate-yaml</id>
                         <configuration>
-                            <apiDocsUrl>http://localhost:${server.port}/v3/api-docs.yaml</apiDocsUrl>
+                            <apiDocsUrl>http://localhost:${server.port}/openapi.yaml</apiDocsUrl>
                             <outputFileName>openapi.yaml</outputFileName>
                         </configuration>
                         <goals>

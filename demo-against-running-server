@@ -201,7 +201,17 @@ type Query {
 (See also http://localhost:8080/data/cats/cats-are-funny-but-not-books in a browser)
 This is a 404 although the message about "static resource" may be misleading.
 http://localhost:8080/data/cats/cats-are-funny-but-not-books
-{"timestamp":"2025-04-30T17:39:55.106+00:00","status":404,"error":"Not Found","message":"No endpoint GET /data/cats/cats-are-funny-but-not-books.","path":"/data/cats/cats-are-funny-but-not-books"}
+{"timestamp":"2025-04-30T18:33:03.845+00:00","status":404,"error":"Not Found","message":"No endpoint GET /data/cats/cats-are-funny-but-not-books.","path":"/data/cats/cats-are-funny-but-not-books"}
+
+== DEVELOPER DOCS
+Swagger UI (open this in a browser not the command line):
+http://localhost:8080/rest
+
+* Demo OpenAPI spec as JSON:
+http://localhost:8080/openapi
+
+* Demo OpenAPI spec as YAML:
+http://localhost:8080/openapi.yaml
 EOC
 
 cat <<'EOM'
@@ -278,3 +288,16 @@ http://localhost:8080/data/cats/cats-are-funny-but-not-books
 EOM
 http :8080/data/cats/cats-are-funny-but-not-books
 echo
+
+cat <<'EOM'
+
+== DEVELOPER DOCS
+Swagger UI (open this in a browser not the command line):
+http://localhost:8080/rest
+
+* Demo OpenAPI spec as JSON:
+http://localhost:8080/openapi
+
+* Demo OpenAPI spec as YAML:
+http://localhost:8080/openapi.yaml
+EOM

@@ -60,6 +60,8 @@ spring:
       add-mappings: false  # Disable static page mappings
 
 springdoc:
+  api-docs:
+    path: /openapi
   show-actuator: true
   model-and-view-allowed: true
   writer-with-default-pretty-printer: true
@@ -67,7 +69,7 @@ springdoc:
   swagger-ui:
     display-request-duration: true
     operations-sorter: alpha
-    path: /rest
+    path: /rest # Consider /docs
     show-common-extensions: true
     show-extensions: true
     tags-sorter: alpha
