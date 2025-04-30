@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Note that HTTPie does not add line endings, so use 'echo'
+
 # Better debugging output when using `bash -x <script>`
 export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]:+${FUNCNAME[0]}():} '
 
@@ -102,100 +104,47 @@ $server && run-server
 # Output should look like:
 
 == REST
-HTTP/1.1 200
-Connection: keep-alive
-Content-Type: application/json
-Date: Wed, 03 Aug 2022 14:21:21 GMT
-Keep-Alive: timeout=60
-Transfer-Encoding: chunked
+(See also http://localhost:8080/rest in a browser)
+http://localhost:8080/rest/books/book-1
+{"id":"book-1","isbn":"978-1-408855-652","authorId":"author-1","title":"Harry Potter and the Philosopher's Stone","pages":223,"moby":true}
 
-{
-    "authorId": "author-1",
-    "id": "book-1",
-    "isbn": "0-00-000000-0",
-    "moby": true,
-    "pages": 223,
-    "title": "Harry Potter and the Philosopher's Stone"
-}
+== REST WITH PAGING (results vary if there are writes between reads)
+(See also http://localhost:8080/rest in a browser)
+* Page #1:
+http://localhost:8080/rest/books?page=1&size=1&sort=title,asc
+[{"id":"book-1","isbn":"978-1-408855-652","authorId":"author-1","title":"Harry Potter and the Philosopher's Stone","pages":223,"moby":true}]
 
-== REST WITH PAGING (results vary)
-HTTP/1.1 200
-Connection: keep-alive
-Content-Type: application/json
-Date: Tue, 29 Nov 2022 19:16:32 GMT
-Keep-Alive: timeout=60
-Transfer-Encoding: chunked
-
-[
-    {
-        "authorId": "author-2",
-        "id": "book-2",
-        "isbn": "0-00-000000-1",
-        "moby": false,
-        "pages": 635,
-        "title": "Moby Dick"
-    }
-]
+* Page #2:
+http://localhost:8080/rest/books?page=2&size=1&sort=title,asc
+[{"id":"book-3","isbn":"978-0-345337-665","authorId":"author-3","title":"Interview with the vampire","pages":371,"moby":false}]
 
 == HATEOAS
-HTTP/1.1 200
-Connection: keep-alive
-Content-Type: application/hal+json
-Date: Wed, 03 Aug 2022 14:20:43 GMT
-Keep-Alive: timeout=60
-Transfer-Encoding: chunked
-Vary: Origin
-Vary: Access-Control-Request-Method
-Vary: Access-Control-Request-Headers
-
+(See also http://localhost:8080/data in a browser)
+http://localhost:8080/data/books/book-1
 {
-    "_links": {
-        "book": {
-            "href": "http://localhost:8080/data/books/book-1"
-        },
-        "self": {
-            "href": "http://localhost:8080/data/books/book-1"
-        }
+  "isbn" : "978-1-408855-652",
+  "authorId" : "author-1",
+  "title" : "Harry Potter and the Philosopher's Stone",
+  "pages" : 223,
+  "moby" : true,
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/data/books/book-1"
     },
-    "authorId": "author-1",
-    "moby": true,
-    "pages": 223,
-    "title": "Harry Potter and the Philosopher's Stone"
+    "book" : {
+      "href" : "http://localhost:8080/data/books/book-1"
+    }
+  }
 }
 
 == GRAPHQL
-HTTP/1.1 200
-Connection: keep-alive
-Content-Type: application/json
-Date: Wed, 03 Aug 2022 14:20:03 GMT
-Keep-Alive: timeout=60
-Transfer-Encoding: chunked
-
-{
-    "data": {
-        "bookByID": {
-            "author": {
-                "firstName": "Joanne",
-                "id": "author-1",
-                "lastName": "Rowling"
-            },
-            "id": "book-1",
-            "isbn": "0-00-000000-0",
-            "moby": true,
-            "pages": 223,
-            "title": "Harry Potter and the Philosopher's Stone"
-        }
-    }
-}
+(See also http://localhost:8080/graphiql in a browser)
+http://localhost:8080/graphql query='<...>'
+{"data":{"bookByID":{"id":"book-1","isbn":"978-1-408855-652","title":"Harry Potter and the Philosopher's Stone","pages":223,"moby":true,"author":{"id":"author-1","firstName":"Joanne","lastName":"Rowling"}}}}
 
 == GRAPHQL SCHEMA
-HTTP/1.1 200
-Connection: keep-alive
-Content-Length: 1312
-Content-Type: text/plain;charset=UTF-8
-Date: Thu, 04 Aug 2022 18:44:48 GMT
-Keep-Alive: timeout=60
-
+(See also http://localhost:8080/graphiql in a browser)
+http://localhost:8080/graphql/schema
 "Marks the field, argument, input field or enum value as deprecated"
 directive @deprecated(
     "The reason for the deprecation"
@@ -208,7 +157,10 @@ directive @include(
     if: Boolean!
   ) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
 
-"Directs the executor to skip this field or fragment when the `if`'argument is true."
+"Indicates an Input Object is a OneOf Input Object."
+directive @oneOf on INPUT_OBJECT
+
+"Directs the executor to skip this field or fragment when the `if` argument is true."
 directive @skip(
     "Skipped when true."
     if: Boolean!
@@ -244,6 +196,12 @@ type Query {
   " A comment that should be ignored by documentation tools"
   bookByID(id: ID!): Book
 }
+
+== FAILURES
+(See also http://localhost:8080/data/cats/cats-are-funny-but-not-books in a browser)
+This is a 404 although the message about "static resource" may be misleading.
+http://localhost:8080/data/cats/cats-are-funny-but-not-books
+{"timestamp":"2025-04-30T17:39:55.106+00:00","status":404,"error":"Not Found","message":"No endpoint GET /data/cats/cats-are-funny-but-not-books.","path":"/data/cats/cats-are-funny-but-not-books"}
 EOC
 
 cat <<'EOM'
@@ -252,22 +210,36 @@ cat <<'EOM'
 http://localhost:8080/rest/books/book-1
 EOM
 http :8080/rest/books/book-1
+echo
 
 cat <<'EOM'
-== REST WITH PAGING (results vary)
+
+== REST WITH PAGING (results vary if there are writes between reads)
 (See also http://localhost:8080/rest in a browser)
-http://localhost:8080/rest/books?page=1&size=1
+* Page #1:
+http://localhost:8080/rest/books?page=1&size=1&sort=title,asc
 EOM
-http ':8080/rest/books/book-1?page=1&size=1'
+http ':8080/rest/books?page=1&size=1&sort=title,asc'
+echo
+cat <<'EOM'
+
+* Page #2:
+http://localhost:8080/rest/books?page=2&size=1&sort=title,asc
+EOM
+http ':8080/rest/books?page=2&size=1&sort=title,asc'
+echo
 
 cat <<'EOM'
+
 == HATEOAS
 (See also http://localhost:8080/data in a browser)
 http://localhost:8080/data/books/book-1
 EOM
 http :8080/data/books/book-1
+echo
 
 cat <<'EOM'
+
 == GRAPHQL
 (See also http://localhost:8080/graphiql in a browser)
 http://localhost:8080/graphql query='<...>'
@@ -286,18 +258,23 @@ http :8080/graphql query='{
     }
   }
 }'
+echo
 
 cat <<'EOM'
+
 == GRAPHQL SCHEMA
 (See also http://localhost:8080/graphiql in a browser)
 http://localhost:8080/graphql/schema
 EOM
 http :8080/graphql/schema
+# echo -- oddly, asking for the schema DOES add a newline at the end
 
 cat <<'EOM'
+
 == FAILURES
 (See also http://localhost:8080/data/cats/cats-are-funny-but-not-books in a browser)
 This is a 404 although the message about "static resource" may be misleading.
 http://localhost:8080/data/cats/cats-are-funny-but-not-books
 EOM
 http :8080/data/cats/cats-are-funny-but-not-books
+echo
