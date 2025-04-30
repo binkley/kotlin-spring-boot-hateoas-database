@@ -4,7 +4,7 @@ management:
       show-components: always
       show-details: always
     shutdown:
-      enabled: true
+      access: unrestricted
   endpoints:
     web:
       base-path: /admin
