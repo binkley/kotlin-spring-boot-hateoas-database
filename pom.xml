@@ -28,8 +28,8 @@
         <!-- NB: Throughout we let Spring Boot manage most versioning -->
         <!-- @formatter:off -->
         <java.version>21</java.version>
-        <kotest.version>6.0.0.M9</kotest.version>
-        <kotlin.version>2.2.0</kotlin.version>
+        <kotest.version>6.0.0.M10</kotest.version>
+        <kotlin.version>2.2.20-Beta2</kotlin.version>
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>3.5.0</ktlint-maven-plugin.version>
         <maven-wrapper-plugin.version>3.3.2</maven-wrapper-plugin.version>
