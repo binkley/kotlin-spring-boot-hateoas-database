@@ -32,7 +32,7 @@
         <kotlin.version>2.2.20-Beta2</kotlin.version>
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
         <ktlint-maven-plugin.version>3.5.0</ktlint-maven-plugin.version>
-        <maven-wrapper-plugin.version>3.3.2</maven-wrapper-plugin.version>
+        <maven-wrapper-plugin.version>3.3.3</maven-wrapper-plugin.version>
         <maven.version>3.9.9</maven.version>
         <springdoc-openapi-maven-plugin.version>1.5</springdoc-openapi-maven-plugin.version>
         <springdoc-openapi.version>2.8.9</springdoc-openapi.version>
